@@ -1,0 +1,441 @@
+/* ==========================================================================
+   ANSAF KINETIC TYPOGRAPHY & GEOMETRIC LOGO REVEAL
+   Monochrome Swiss kinetic motion · Pure Black & White · 1:1 Square Canvas
+   ========================================================================== */
+
+/* ── Fullscreen Viewport ── */
+.ansaf-kinetic-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  opacity: 1;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ansaf-kinetic-viewport.exit-fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── 1:1 Square Composition Container ── */
+.ansaf-kinetic-container {
+  position: relative;
+  width: 100%;
+  max-width: min(85vh, 85vw);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Vector Canvas ── */
+.ansaf-svg-canvas {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ══════════════════════════════════════════════════
+   CENTRAL S (STATIONARY VISUAL ANCHOR)
+   Appears alone at exact center at 0.8s
+   ══════════════════════════════════════════════════ */
+.anchor-s {
+  transform-origin: 360px 360px;
+  animation: sAnchorReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sAnchorReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+    filter: brightness(2.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: brightness(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.s-path-stroke {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 11px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Subtle corner anchor brackets around S */
+.s-anchor-ticks .tick-line {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.5px;
+  stroke-linecap: square;
+}
+
+.anchor-s.s-locked .tick-line {
+  stroke: rgba(255, 255, 255, 0.2);
+  transition: stroke 0.6s ease;
+}
+
+/* ══════════════════════════════════════════════════
+   THE 4 INCOMING GEOMETRIC STRIP LINES
+   Thin, long lines shooting in from the 4 edges.
+   Tails detach from borders mid-flight.
+   ══════════════════════════════════════════════════ */
+.anim-strip {
+  stroke: #ffffff;
+  stroke-width: 11px;
+  stroke-linecap: round;
+}
+
+/* 1. LEFT STRIP (from left edge at x = -60 to x = 180) */
+.strip-from-left {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: stripRunLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stripRunLeft {
+  0% {
+    stroke-dashoffset: 240;
+    opacity: 0;
+  }
+  20% {
+    stroke-dashoffset: 180;
+    opacity: 1;
+  }
+  /* Tail detaches from edge: full bar enters */
+  65% {
+    stroke-dashoffset: 60;
+    opacity: 1;
+  }
+  /* Reaches Letter A1 position and morphs */
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* Left secondary displacement line */
+.strip-from-left-sub {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 3px;
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: stripRunLeftSub 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+}
+
+@keyframes stripRunLeftSub {
+  0%   { stroke-dashoffset: 180; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* 2. TOP STRIP (from top edge at y = -60 down to y = 322) */
+.strip-from-top {
+  stroke-dasharray: 382;
+  stroke-dashoffset: 382;
+  animation: stripRunTop 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+@keyframes stripRunTop {
+  0% {
+    stroke-dashoffset: 382;
+    opacity: 0;
+  }
+  20% {
+    stroke-dashoffset: 280;
+    opacity: 1;
+  }
+  /* Tail leaves top border */
+  65% {
+    stroke-dashoffset: 100;
+    opacity: 1;
+  }
+  /* Reaches top of Letter N */
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* Top secondary streak near S */
+.strip-from-top-sub {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2.5px;
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: stripRunTopSub 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+}
+
+@keyframes stripRunTopSub {
+  0%   { stroke-dashoffset: 260; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { stroke-dashoffset: 0; opacity: 0.8; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* 3. BOTTOM STRIP (from bottom edge at y = 780 up to y = 322) */
+.strip-from-bottom {
+  stroke-dasharray: 458;
+  stroke-dashoffset: 458;
+  animation: stripRunBottom 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+@keyframes stripRunBottom {
+  0% {
+    stroke-dashoffset: 458;
+    opacity: 0;
+  }
+  20% {
+    stroke-dashoffset: 340;
+    opacity: 1;
+  }
+  /* Tail leaves bottom border */
+  65% {
+    stroke-dashoffset: 120;
+    opacity: 1;
+  }
+  /* Reaches Letter A2 apex */
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.strip-from-bottom-sub {
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 2.5px;
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: stripRunBottomSub 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.16s forwards;
+}
+
+@keyframes stripRunBottomSub {
+  0%   { stroke-dashoffset: 260; opacity: 0; }
+  30%  { opacity: 1; }
+  85%  { stroke-dashoffset: 0; opacity: 0.8; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* 4. RIGHT STRIP (from right edge at x = 780 left to x = 516) */
+.strip-from-right-top {
+  stroke-dasharray: 264;
+  stroke-dashoffset: 264;
+  animation: stripRunRightTop 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@keyframes stripRunRightTop {
+  0% {
+    stroke-dashoffset: 264;
+    opacity: 0;
+  }
+  20% {
+    stroke-dashoffset: 190;
+    opacity: 1;
+  }
+  65% {
+    stroke-dashoffset: 70;
+    opacity: 1;
+  }
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.strip-from-right-mid {
+  stroke-dasharray: 304;
+  stroke-dashoffset: 304;
+  animation: stripRunRightMid 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@keyframes stripRunRightMid {
+  0% {
+    stroke-dashoffset: 304;
+    opacity: 0;
+  }
+  20% {
+    stroke-dashoffset: 210;
+    opacity: 1;
+  }
+  65% {
+    stroke-dashoffset: 80;
+    opacity: 1;
+  }
+  85% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   CONSTRUCTED LETTERS (A, N, A, F)
+   The incoming strips split and physically draw each stroke!
+   ══════════════════════════════════════════════════ */
+.letter-stroke {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 11px;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+}
+
+/* ── LETTER 1: A (Morphing from Left strip) ── */
+.stroke-a1-left {
+  stroke-dasharray: 81;
+  stroke-dashoffset: 81;
+  animation: strokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+.stroke-a1-right {
+  stroke-dasharray: 81;
+  stroke-dashoffset: 81;
+  animation: strokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+}
+
+.stroke-a1-bar {
+  stroke-width: 9px;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: strokeDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+}
+
+/* ── LETTER 2: N (Morphing from Top strip) ── */
+.stroke-n-left {
+  stroke-dasharray: 76;
+  stroke-dashoffset: 76;
+  animation: strokeDraw 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+}
+
+.stroke-n-diag {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: strokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+}
+
+.stroke-n-right {
+  stroke-dasharray: 76;
+  stroke-dashoffset: 76;
+  animation: strokeDraw 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
+}
+
+/* ── LETTER 4: A (Morphing from Bottom strip) ── */
+.stroke-a2-left {
+  stroke-dasharray: 81;
+  stroke-dashoffset: 81;
+  animation: strokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.stroke-a2-right {
+  stroke-dasharray: 81;
+  stroke-dashoffset: 81;
+  animation: strokeDraw 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+}
+
+.stroke-a2-bar {
+  stroke-width: 9px;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: strokeDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.26s forwards;
+}
+
+/* ── LETTER 5: F (Morphing from Right strip) ── */
+.stroke-f-top {
+  stroke-dasharray: 46;
+  stroke-dashoffset: 46;
+  animation: strokeDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+}
+
+.stroke-f-spine {
+  stroke-dasharray: 76;
+  stroke-dashoffset: 76;
+  animation: strokeDraw 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.stroke-f-mid {
+  stroke-width: 10px;
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: strokeDraw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+/* Shared stroke draw keyframe */
+@keyframes strokeDraw {
+  0% {
+    stroke-dashoffset: inherit;
+    filter: brightness(2.8);
+  }
+  60% {
+    stroke-dashoffset: 0;
+    filter: brightness(1.5);
+  }
+  100% {
+    stroke-dashoffset: 0;
+    filter: brightness(1);
+  }
+}
+
+/* Lock-in state */
+.constructed-letter.locked .letter-stroke {
+  filter: brightness(1);
+}
+
+/* ══════════════════════════════════════════════════
+   STAGE 4: GEOMETRIC UNDERLINE LOCK-IN
+   Minimal horizontal baseline locking the typography
+   ══════════════════════════════════════════════════ */
+.ansaf-lock-underline {
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 2px;
+  stroke-linecap: square;
+  stroke-dasharray: 424;
+  stroke-dashoffset: 424;
+  animation: drawUnderlineLock 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawUnderlineLock {
+  0% {
+    stroke-dashoffset: 424;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
