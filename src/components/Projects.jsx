@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   FolderGit2, 
   ArrowRight, 
-  Info,
-  ArrowUpRight,
-  ChevronUp
+  ChevronUp,
+  ZoomIn
 } from 'lucide-react';
-import { GithubIcon } from './Icons';
 import { PROJECTS } from '../data/portfolioData';
 import { ProjectModal } from './ProjectModal';
+import { ImageViewerModal } from './ImageViewerModal';
 
 export const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [viewerData, setViewerData] = useState(null); // { project, imageIndex }
+  const [activeImageMap, setActiveImageMap] = useState({}); // { [projectId]: index }
+
+  const activeProjectIdRef = useRef(null);
+  const activeViewerRef = useRef(null);
+
+  // Keep refs synchronized with active modals
+  useEffect(() => {
+    activeProjectIdRef.current = selectedProject ? selectedProject.id : null;
+  }, [selectedProject]);
+
+  useEffect(() => {
+    activeViewerRef.current = viewerData ? viewerData.project.id : null;
+  }, [viewerData]);
 
   const scrollToTopProjects = () => {
     const el = document.getElementById('projects');
@@ -20,36 +33,145 @@ export const Projects = () => {
     }
   };
 
+  // Open Case Study Modal with browser history state
+  const openCaseStudy = (project) => {
+    setViewerData(null);
+    setSelectedProject(project);
+    activeProjectIdRef.current = project.id;
+    window.history.pushState(
+      { modal: 'project-case-study', projectId: project.id },
+      '',
+      `#project-${project.id}`
+    );
+  };
+
+  // Close Case Study Modal (triggers history back so browser navigation stays clean)
+  const closeCaseStudy = () => {
+    if (window.location.hash.startsWith('#project-')) {
+      window.history.back();
+    } else {
+      const closedId = activeProjectIdRef.current;
+      setSelectedProject(null);
+      activeProjectIdRef.current = null;
+      if (closedId) {
+        setTimeout(() => {
+          const cardEl = document.getElementById(`project-card-${closedId}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 80);
+      }
+    }
+  };
+
+  // Open Full Image Viewer with browser history state
+  const openImageViewer = (project, imageIndex = 0) => {
+    setViewerData({ project, imageIndex });
+    activeViewerRef.current = project.id;
+    window.history.pushState(
+      { modal: 'image-viewer', projectId: project.id, imageIndex },
+      '',
+      `#view-${project.id}-${imageIndex}`
+    );
+  };
+
+  // Close Full Image Viewer
+  const closeImageViewer = () => {
+    if (window.location.hash.startsWith('#view-')) {
+      window.history.back();
+    } else {
+      const targetId = activeViewerRef.current;
+      setViewerData(null);
+      activeViewerRef.current = null;
+      if (targetId) {
+        setTimeout(() => {
+          const cardEl = document.getElementById(`project-card-${targetId}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 80);
+      }
+    }
+  };
+
+  // Listen for hardware / browser back navigation:
+  // - Laptop: browser back button (top left), Alt+Left, trackpad 2-finger swipe back, mouse back button
+  // - Mobile/Phone/Tablet: system edge-swipe back gesture, hardware back button, browser back
+  useEffect(() => {
+    const handlePopState = () => {
+      // 1. If Image Viewer is open, close it and return to the card
+      if (activeViewerRef.current) {
+        const targetId = activeViewerRef.current;
+        setViewerData(null);
+        activeViewerRef.current = null;
+
+        setTimeout(() => {
+          const cardEl = document.getElementById(`project-card-${targetId}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 80);
+        return;
+      }
+
+      // 2. If Case Study modal is open, close it and return to the card
+      if (activeProjectIdRef.current) {
+        const targetId = activeProjectIdRef.current;
+        setSelectedProject(null);
+        activeProjectIdRef.current = null;
+
+        setTimeout(() => {
+          const cardEl = document.getElementById(`project-card-${targetId}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 80);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
+  // Check initial URL hash on mount
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#project-')) {
+      const projId = hash.replace('#project-', '');
+      const found = PROJECTS.find((p) => p.id === projId);
+      if (found) {
+        setSelectedProject(found);
+        activeProjectIdRef.current = found.id;
+      }
+    } else if (hash && hash.startsWith('#view-')) {
+      const parts = hash.replace('#view-', '').split('-');
+      const indexStr = parts.pop();
+      const projId = parts.join('-');
+      const found = PROJECTS.find((p) => p.id === projId);
+      if (found) {
+        const idx = parseInt(indexStr, 10) || 0;
+        setViewerData({ project: found, imageIndex: idx });
+        activeViewerRef.current = found.id;
+      }
+    }
+  }, []);
+
   return (
     <section id="projects" className="projects-section">
       <div className="container">
-        {/* Section Header with Code-Tag Styling matching reference */}
+        {/* Section Header */}
         <div className="projects-header">
           <div className="section-badge" style={{ marginBottom: '16px' }}>
             <FolderGit2 size={14} />
-            <span>03 · Featured Work</span>
-          </div>
-
-          <div className="projects-code-tag">
-            <span className="code-bracket">&lt;</span>
-            <span className="code-element">h2</span>
-            <span className="code-attr"> class=</span>
-            <span className="code-value">"projects"</span>
-            <span className="code-bracket">&gt;</span>
-            <span className="code-cursor">|</span>
+            <span>03 · MY WORK</span>
           </div>
 
           <h2 className="projects-hero-heading">PROJECTS</h2>
 
-          <div className="projects-code-tag" style={{ marginBottom: '18px' }}>
-            <span className="code-bracket">&lt;/</span>
-            <span className="code-element">h2</span>
-            <span className="code-bracket">&gt;</span>
-            <span className="code-cursor">|</span>
-          </div>
-
           <p className="projects-hero-sub">
-            Enterprise Distributed Systems · Scalable REST APIs · Modern Reactive Web Platforms
+            Selected projects showcasing my engineering skills, technical expertise, and problem-solving approach.
           </p>
         </div>
 
@@ -57,9 +179,17 @@ export const Projects = () => {
         <div className="projects-stack-deck">
           {PROJECTS.map((project, index) => {
             const cardZIndex = index + 1;
+            const projectImages = project.images && project.images.length > 0
+              ? project.images
+              : [{ url: project.image, title: project.title, label: 'Overview' }];
+            const activeImgIdx = activeImageMap[project.id] || 0;
+            const currentImg = projectImages[activeImgIdx] || projectImages[0];
+            const hasMultipleImages = projectImages.length > 1;
+
             return (
               <div
                 key={project.id}
+                id={`project-card-${project.id}`}
                 className="project-stack-card"
                 style={{
                   '--card-index': index,
@@ -73,66 +203,23 @@ export const Projects = () => {
                     <span className="card-category">{project.category || project.badge}</span>
                   </div>
 
-                  <div className="card-actions-desktop">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="card-pill-btn card-pill-live"
-                    >
-                      <span>LIVE PROJECT</span>
-                      <ArrowUpRight size={15} />
-                    </a>
-
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="card-pill-btn card-pill-study"
-                    >
-                      <span>CASE STUDY</span>
-                      <ArrowRight size={14} />
-                    </button>
-
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="card-pill-btn card-pill-ghost"
-                      aria-label="GitHub Repository"
-                    >
-                      <GithubIcon size={14} />
-                      <span>CODE</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Project Title */}
-                <h3 
-                  className="card-title"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Mobile Action Buttons Bar */}
-                <div className="card-actions-mobile">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="card-pill-btn card-pill-live"
-                  >
-                    <span>LIVE PROJECT</span>
-                    <ArrowUpRight size={15} />
-                  </a>
-
                   <button
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => openCaseStudy(project)}
                     className="card-pill-btn card-pill-study"
+                    aria-label={`Open architecture case study for ${project.title}`}
                   >
                     <span>CASE STUDY</span>
                     <ArrowRight size={14} />
                   </button>
                 </div>
+
+                {/* Project Title */}
+                <h3 
+                  className="card-title"
+                  onClick={() => openCaseStudy(project)}
+                >
+                  {project.title}
+                </h3>
 
                 {/* Narrative Description */}
                 <p className="card-description">
@@ -148,7 +235,7 @@ export const Projects = () => {
                   ))}
                 </div>
 
-                {/* Split Media Showcase */}
+                {/* Split Media Showcase: Both thumbnails + Image cleanly visible */}
                 <div className="card-media-showcase">
                   {/* Left Column: 2 Feature Thumbnail Cards */}
                   <div className="media-thumbs-col">
@@ -157,7 +244,7 @@ export const Projects = () => {
                         <div
                           key={tIdx}
                           className="media-thumb-box"
-                          onClick={() => setSelectedProject(project)}
+                          onClick={() => openCaseStudy(project)}
                         >
                           <div className="thumb-box-header">
                             <span className="thumb-badge">{thumb.tag}</span>
@@ -171,7 +258,7 @@ export const Projects = () => {
                       <>
                         <div
                           className="media-thumb-box"
-                          onClick={() => setSelectedProject(project)}
+                          onClick={() => openCaseStudy(project)}
                         >
                           <div className="thumb-box-header">
                             <span className="thumb-badge">ARCHITECTURE</span>
@@ -182,7 +269,7 @@ export const Projects = () => {
                         </div>
                         <div
                           className="media-thumb-box"
-                          onClick={() => setSelectedProject(project)}
+                          onClick={() => openCaseStudy(project)}
                         >
                           <div className="thumb-box-header">
                             <span className="thumb-badge">DATA PIPELINE</span>
@@ -195,21 +282,50 @@ export const Projects = () => {
                     )}
                   </div>
 
-                  {/* Right Column: Hero Showcase Image */}
-                  <div 
-                    className="media-hero-container"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="media-hero-img"
-                    />
-                    <div className="media-hero-overlay">
-                      <span className="media-overlay-badge">
-                        <Info size={14} />
-                        <span>View Architecture Case Study</span>
-                      </span>
+                  {/* Right Column: Hero Showcase Image / Screenshot Switcher */}
+                  <div className="media-hero-container">
+                    {/* View Switcher Pills if project has multiple images */}
+                    {hasMultipleImages && (
+                      <div className="media-switcher-bar" onClick={(e) => e.stopPropagation()}>
+                        {projectImages.map((img, imgIdx) => {
+                          const isActive = imgIdx === activeImgIdx;
+                          return (
+                            <button
+                              key={imgIdx}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveImageMap((prev) => ({
+                                  ...prev,
+                                  [project.id]: imgIdx
+                                }));
+                              }}
+                              className={`media-switch-pill ${isActive ? 'active' : ''}`}
+                              title={`Switch to ${img.label}`}
+                            >
+                              {img.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Image Box: Click to view full image in high resolution */}
+                    <div
+                      className="media-img-wrapper"
+                      onClick={() => openImageViewer(project, activeImgIdx)}
+                      title="Click to view full image in high resolution"
+                    >
+                      <img
+                        src={currentImg.url}
+                        alt={currentImg.title || project.title}
+                        className="media-hero-img"
+                      />
+                      <div className="media-hero-overlay">
+                        <span className="media-overlay-badge">
+                          <ZoomIn size={14} />
+                          <span>View Full Image</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -235,7 +351,17 @@ export const Projects = () => {
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
-          onClose={() => setSelectedProject(null)}
+          onClose={closeCaseStudy}
+          onOpenImageViewer={(imgIdx) => openImageViewer(selectedProject, imgIdx)}
+        />
+      )}
+
+      {/* Fullscreen Image Lightbox Viewer with Back option */}
+      {viewerData && (
+        <ImageViewerModal
+          project={viewerData.project}
+          initialIndex={viewerData.imageIndex}
+          onClose={closeImageViewer}
         />
       )}
 
@@ -246,51 +372,10 @@ export const Projects = () => {
           overflow: visible;
         }
 
-        /* Header Code Tag */
+        /* Header */
         .projects-header {
           text-align: center;
-          margin-bottom: 64px;
-        }
-
-        .projects-code-tag {
-          font-family: var(--font-code, monospace);
-          font-size: 0.95rem;
-          color: #a855f7;
-          display: inline-flex;
-          align-items: center;
-          gap: 2px;
-          user-select: none;
-          letter-spacing: 0.04em;
-        }
-
-        .code-bracket {
-          color: #ec4899;
-          font-weight: 600;
-        }
-
-        .code-element {
-          color: #a855f7;
-          font-weight: 600;
-        }
-
-        .code-attr {
-          color: #38bdf8;
-        }
-
-        .code-value {
-          color: #34d399;
-        }
-
-        .code-cursor {
-          color: var(--primary-accent);
-          font-weight: bold;
-          margin-left: 2px;
-          animation: blinkCursor 1s step-end infinite;
-        }
-
-        @keyframes blinkCursor {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
+          margin-bottom: 54px;
         }
 
         .projects-hero-heading {
@@ -299,7 +384,7 @@ export const Projects = () => {
           letter-spacing: -0.03em;
           color: var(--text-main);
           line-height: 1.05;
-          margin: 10px 0;
+          margin: 12px 0 16px 0;
           text-transform: uppercase;
         }
 
@@ -322,36 +407,45 @@ export const Projects = () => {
           padding-bottom: 80px;
         }
 
+        /* Perfectly Proportioned Sticky Card */
         .project-stack-card {
           position: sticky;
-          top: calc(75px + var(--card-index) * 20px);
-          margin-bottom: 70px;
+          top: calc(64px + var(--card-index) * 6px);
+          margin-bottom: clamp(65px, 9vh, 95px);
           background: var(--surface-color);
           border: 1px solid var(--border-color);
-          border-radius: var(--radius-lg, 28px);
+          border-radius: var(--radius-lg, 24px);
           box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.2), 0 24px 50px rgba(0, 0, 0, 0.3);
-          padding: 34px 38px;
+          padding: clamp(16px, 2vw, 22px) clamp(18px, 2.5vw, 28px);
           color: var(--text-main);
           transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          box-sizing: border-box;
+          max-height: calc(100vh - 74px);
+          overflow-y: auto;
+          scrollbar-width: none;
+        }
+
+        .project-stack-card::-webkit-scrollbar {
+          display: none;
         }
 
         .project-stack-card:hover {
           border-color: var(--border-highlight);
         }
 
-        /* Top Bar: Number & Category */
+        /* Top Bar: Number & Category on left, Case Study button on right */
         .card-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 16px;
-          margin-bottom: 14px;
+          margin-bottom: 10px;
         }
 
         .card-meta {
           display: flex;
           flex-direction: column;
-          gap: 3px;
+          gap: 2px;
         }
 
         .card-number {
@@ -370,25 +464,12 @@ export const Projects = () => {
           color: var(--primary-accent);
         }
 
-        /* Desktop Action Buttons */
-        .card-actions-desktop {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          flex-wrap: wrap;
-        }
-
-        .card-actions-mobile {
-          display: none;
-          gap: 10px;
-          margin-bottom: 16px;
-        }
-
+        /* Case Study Hero Pill Button */
         .card-pill-btn {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          padding: 8px 18px;
+          padding: 7px 18px;
           border-radius: 9999px;
           font-size: 0.76rem;
           font-weight: 700;
@@ -397,20 +478,6 @@ export const Projects = () => {
           text-decoration: none;
           cursor: pointer;
           transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .card-pill-live {
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          color: #ffffff;
-        }
-
-        .card-pill-live:hover {
-          background: var(--primary-accent);
-          border-color: var(--primary-accent);
-          box-shadow: 0 0 20px var(--accent-glow);
-          color: #ffffff;
-          transform: translateY(-2px);
         }
 
         .card-pill-study {
@@ -423,28 +490,17 @@ export const Projects = () => {
           background: var(--primary-accent);
           color: #ffffff;
           transform: translateY(-2px);
-        }
-
-        .card-pill-ghost {
-          background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          color: rgba(255, 255, 255, 0.75);
-        }
-
-        .card-pill-ghost:hover {
-          background: rgba(255, 255, 255, 0.1);
-          color: #ffffff;
-          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 4px 18px var(--accent-glow);
         }
 
         /* Title */
         .card-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+          font-size: clamp(1.15rem, 2vw, 1.55rem);
           font-weight: 800;
           color: var(--text-main);
           letter-spacing: -0.02em;
-          margin-bottom: 14px;
+          margin-bottom: 6px;
           cursor: pointer;
           line-height: 1.25;
           text-transform: uppercase;
@@ -455,56 +511,60 @@ export const Projects = () => {
           color: var(--primary-accent);
         }
 
-        /* Description */
+        /* Description with Controlled Clamp so Card Details Below are Fully Visible */
         .card-description {
-          font-size: 0.94rem;
-          line-height: 1.68;
+          font-size: 0.88rem;
+          line-height: 1.55;
           color: var(--text-muted);
-          margin-bottom: 18px;
+          margin-bottom: 10px;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         /* Tech Badges */
         .card-tech-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
-          margin-bottom: 24px;
+          gap: 6px;
+          margin-bottom: 12px;
         }
 
         .card-tech-pill {
           display: inline-flex;
           align-items: center;
-          padding: 5px 12px;
+          padding: 3px 10px;
           border-radius: var(--radius-full);
           background: var(--surface-glass);
           border: 1px solid var(--border-color);
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 600;
           letter-spacing: 0.04em;
           text-transform: uppercase;
           color: var(--text-main);
         }
 
-        /* Split Media Showcase */
+        /* Split Media Showcase: Proportioned for 100% full visibility */
         .card-media-showcase {
           display: grid;
-          grid-template-columns: 280px 1fr;
-          gap: 18px;
+          grid-template-columns: minmax(220px, 260px) 1fr;
+          gap: 12px;
           align-items: stretch;
-          margin-top: 8px;
+          margin-top: 4px;
         }
 
         .media-thumbs-col {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 8px;
         }
 
         .media-thumb-box {
           background: var(--surface-glass);
           border: 1px solid var(--border-color);
-          border-radius: var(--radius-md, 16px);
-          padding: 16px 18px;
+          border-radius: 12px;
+          padding: 9px 13px;
           cursor: pointer;
           transition: all 0.25s ease;
           display: flex;
@@ -523,87 +583,137 @@ export const Projects = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 6px;
+          margin-bottom: 3px;
         }
 
         .thumb-badge {
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 700;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.08em;
           color: var(--primary-accent);
           text-transform: uppercase;
         }
 
         .thumb-dot {
-          width: 6px;
-          height: 6px;
+          width: 5px;
+          height: 5px;
           border-radius: 50%;
           background: var(--primary-accent);
-          box-shadow: 0 0 8px var(--primary-accent);
+          box-shadow: 0 0 6px var(--primary-accent);
         }
 
         .thumb-title {
-          font-size: 0.88rem;
+          font-size: 0.8rem;
           font-weight: 700;
           color: var(--text-main);
-          margin-bottom: 4px;
+          margin-bottom: 2px;
+          line-height: 1.25;
         }
 
         .thumb-detail {
-          font-size: 0.76rem;
-          line-height: 1.45;
+          font-size: 0.7rem;
+          line-height: 1.35;
           color: var(--text-muted);
         }
 
+        /* Hero Image Container with Screenshot Switcher Tabs */
         .media-hero-container {
           position: relative;
-          border-radius: 20px;
+          border-radius: 14px;
           overflow: hidden;
-          background: #000000;
+          background: #0a0c16;
           border: 1px solid rgba(255, 255, 255, 0.1);
+          height: clamp(140px, 20vh, 185px);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .media-switcher-bar {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          right: 8px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          z-index: 10;
+          pointer-events: auto;
+        }
+
+        .media-switch-pill {
+          padding: 3px 10px;
+          border-radius: 9999px;
+          font-size: 0.68rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: rgba(10, 12, 22, 0.75);
+          color: rgba(255, 255, 255, 0.75);
           cursor: pointer;
-          min-height: 220px;
-          max-height: 320px;
+          backdrop-filter: blur(10px);
+          transition: all 0.2s ease;
+        }
+
+        .media-switch-pill:hover {
+          color: #ffffff;
+          border-color: var(--primary-accent);
+          background: rgba(10, 12, 22, 0.9);
+        }
+
+        .media-switch-pill.active {
+          background: var(--primary-accent);
+          color: #000000;
+          border-color: var(--primary-accent);
+          box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .media-img-wrapper {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          overflow: hidden;
         }
 
         .media-hero-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: top center;
           display: block;
           transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .media-hero-container:hover .media-hero-img {
-          transform: scale(1.04);
+        .media-img-wrapper:hover .media-hero-img {
+          transform: scale(1.05);
         }
 
         .media-hero-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(9, 9, 15, 0.5);
+          background: rgba(9, 9, 15, 0.45);
           display: flex;
           align-items: center;
           justify-content: center;
           opacity: 0;
-          transition: opacity 0.3s ease;
+          transition: opacity 0.25s ease;
         }
 
-        .media-hero-container:hover .media-hero-overlay {
+        .media-img-wrapper:hover .media-hero-overlay {
           opacity: 1;
         }
 
         .media-overlay-badge {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 18px;
+          gap: 6px;
+          padding: 6px 14px;
           border-radius: 9999px;
           background: var(--primary-accent);
-          color: #ffffff;
-          font-size: 0.78rem;
+          color: #000000;
+          font-size: 0.72rem;
           font-weight: 700;
-          box-shadow: 0 0 20px var(--accent-glow);
+          box-shadow: 0 0 18px var(--accent-glow);
         }
 
         /* Floating Scroll to Top button */
@@ -643,27 +753,19 @@ export const Projects = () => {
         /* Responsive Styles */
         @media (max-width: 900px) {
           .project-stack-card {
-            top: calc(65px + var(--card-index) * 15px);
-            margin-bottom: 45px;
-            padding: 24px 20px;
-            border-radius: 22px;
-          }
-
-          .card-actions-desktop {
-            display: none;
-          }
-
-          .card-actions-mobile {
-            display: flex;
+            top: calc(58px + var(--card-index) * 4px);
+            margin-bottom: 40px;
+            padding: 14px 14px;
+            border-radius: 18px;
           }
 
           .card-media-showcase {
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 8px;
           }
 
           .media-hero-container {
-            min-height: 200px;
+            height: 145px;
           }
         }
       `}</style>

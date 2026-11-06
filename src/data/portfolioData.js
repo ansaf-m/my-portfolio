@@ -128,7 +128,19 @@ export const PROJECTS = [
     subtitle: "Enterprise Full-Stack Retail & Inventory Engine",
     category: "SYSTEMS & FULL-STACK",
     badge: "Featured Full-Stack System",
-    image: "/images/project-clothing.jpg",
+    image: "/images/project-clothing-store.png",
+    images: [
+      {
+        url: "/images/project-clothing-store.png",
+        title: "Hype Clothing — Storefront & Hero Showcase",
+        label: "Storefront"
+      },
+      {
+        url: "/images/project-clothing-admin.png",
+        title: "Hype Clothing — Admin Dashboard & Inventory Overview",
+        label: "Admin Dashboard"
+      }
+    ],
     description: "A comprehensive full-stack clothing catalog and inventory management platform built with React.js, Java Spring Boot, Spring Security, JWT, and MySQL. Features role-based access control, an intuitive admin dashboard, product category filtering, size variations, and real-time inventory management.",
     technologies: ["React.js", "Java 21", "Spring Boot", "Spring Security", "JWT", "MySQL", "JPA/Hibernate", "Axios"],
     githubUrl: "https://github.com/ansaf-m",
@@ -161,7 +173,19 @@ export const PROJECTS = [
     subtitle: "Interactive Cinema Discovery & Bookmarking Portal",
     category: "WEB DEVELOPMENT",
     badge: "React & REST API Application",
-    image: "/images/project-movies.jpg",
+    image: "/images/project-movies-home.jpg",
+    images: [
+      {
+        url: "/images/project-movies-home.jpg",
+        title: "Movie App — Discovery Feed & Trending Cinema Titles",
+        label: "Discovery Feed"
+      },
+      {
+        url: "/images/project-movies-search.jpg",
+        title: "Movie App — Real-Time Debounced Search Engine (e.g. Avengers)",
+        label: "Search Engine"
+      }
+    ],
     description: "A dynamic, responsive cinema discovery web platform built with React.js and the TMDB REST API. Integrates real-time movie search, interactive genre filters, detailed movie synopsis views, and a persistent favorites bookmarking system.",
     technologies: ["React.js", "JavaScript ES6+", "HTML5", "CSS3", "TMDB REST API", "Axios"],
     githubUrl: "https://github.com/ansaf-m",
@@ -188,68 +212,94 @@ export const PROJECTS = [
     }
   },
   {
-    id: "cloud-microservices-hub",
+    id: "sayfstore-ecommerce",
     number: "03",
-    title: "Enterprise Backend REST API & Microservice Hub",
-    subtitle: "Scalable Java Spring Boot & SQL Engine",
-    category: "SYSTEMS & ARCHITECTURE",
-    badge: "Cloud Backend Architecture",
-    image: "/images/project-microservices.jpg",
-    description: "An enterprise-grade distributed backend architecture implemented with Java Spring Boot, MySQL, and Docker. Implements clean layered architecture, HikariCP connection pooling, and automated Postman API validation suites.",
-    technologies: ["Java 21", "Spring Boot", "MySQL", "PostgreSQL", "Docker", "Postman", "Swagger/OpenAPI"],
+    title: "SAYF STORE — 3D E-Commerce Platform",
+    subtitle: "Modern Beard Care Brand & Interactive 3D Product Experience",
+    category: "3D WEB & COMMERCIAL",
+    badge: "Live Production · sayfstore.in",
+    image: "/images/project-sayf-3d.jpg",
+    images: [
+      {
+        url: "/images/project-sayf-3d.jpg",
+        title: "SAYF Store — Interactive 3D Rotating Product Bottle & Feature Callouts",
+        label: "3D Bottle Showcase"
+      },
+      {
+        url: "/images/project-sayf-product.jpg",
+        title: "SAYF Store — Product Detail, Quantity Selection & Direct Cart Ordering",
+        label: "Product & Cart"
+      }
+    ],
+    description: "Developed a modern e-commerce platform for SAYF Store, a beard oil product brand, featuring an interactive 3D rotating product animation, responsive product interface, and dynamic shopping cart. Integrated direct order placement that sends selected products and cart details to the store owner's contact number. Configured a custom GoDaddy domain and deployed the website on Vercel.",
+    technologies: ["React.js", "Three.js", "JavaScript ES6+", "Modern CSS3", "Vercel", "GoDaddy DNS"],
     githubUrl: "https://github.com/ansaf-m",
-    liveUrl: "https://demo.ansafdev.com/backend-hub",
+    liveUrl: "https://sayfstore.in",
     thumbnails: [
-      { tag: "METRICS & MONITORING", title: "HikariCP & 3.5x Speedup", detail: "Composite Indexing & Connection Pool" },
-      { tag: "CONTRACT TESTING", title: "Postman Automated Suites", detail: "End-to-End Validation & Swagger Spec" }
+      { tag: "3D VISUALIZATION", title: "Three.js Spinning Bottle", detail: "Interactive 3D Product Presentation" },
+      { tag: "COMMERCE WORKFLOW", title: "Direct Contact Order Routing", detail: "Dynamic Cart Payload to Owner Number" }
     ],
     caseStudy: {
-      problem: "Building backend systems that maintain high throughput, data consistency across multiple relational tables, and clear API contracts for frontend consumers.",
-      architecture: "Clean layered architecture with DTOs, custom exception handlers, Spring Data JPA repositories with optimized queries, and Docker Compose orchestration.",
-      solution: "Implemented comprehensive REST contracts with Swagger/OpenAPI documentation, indexed MySQL schemas, and end-to-end automated Postman test suites.",
+      problem: "A direct-to-consumer beard oil brand needed an engaging, modern digital storefront that stands out through immersive 3D product visuals and streamlines conversion without the friction of complex multi-step checkouts.",
+      architecture: "React component architecture utilizing Three.js for client-side GPU-rendered 3D bottle rotation, custom state hooks for shopping cart management, and URL encoding for direct order message dispatch to the owner's contact channel.",
+      solution: "Designed and developed the complete website from scratch, crafted the 3D rotating product presentation with feature callouts, built dynamic cart management with order redirection to the owner's WhatsApp, configured the custom domain via GoDaddy, and deployed the production site on Vercel.",
       metrics: [
-        { label: "Query Speedup", value: "3.5x with Indexing" },
-        { label: "Test Coverage", value: "Postman Collections" },
-        { label: "Deployment", value: "Dockerized Containers" }
+        { label: "Live Domain", value: "sayfstore.in" },
+        { label: "3D Engine", value: "Interactive Three.js" },
+        { label: "Order Routing", value: "Direct WhatsApp Flow" }
       ],
       keyFeatures: [
-        "Clean DTO patterns separating database models from API payloads",
-        "Global exception handling with structured JSON error responses",
-        "Optimized MySQL relational schemas with foreign key integrity and B-tree indexes",
-        "Postman test collections covering status codes, validation, and auth flows"
+        "Interactive 3D spinning beard oil bottle animation showcasing product benefits and ingredients",
+        "Modern, responsive e-commerce interface optimized for mobile and desktop shoppers",
+        "Dynamic shopping cart with quantity selection (1, 2, or 3 bottles) and bundle pricing",
+        "Direct order placement dispatching selected items and cart summaries to the owner's number",
+        "Custom DNS configuration with GoDaddy and automated CI/CD deployment on Vercel"
       ]
     }
   },
   {
-    id: "freelance-client-portals",
+    id: "smart-expense-classifier",
     number: "04",
-    title: "Freelance Client Applications & Business Portals",
-    subtitle: "Tailored Business Portals & Responsive Interfaces",
-    category: "WEB DEVELOPMENT",
-    badge: "Freelance & Commercial Systems",
-    image: "/images/project-clothing.jpg",
-    description: "Developed multiple custom web applications and business portals for freelance clients, covering tailored administrative workflows, responsive interfaces, role-based administration panels, and business-specific REST API functionality.",
-    technologies: ["React.js", "JavaScript ES6+", "Node.js", "Express.js", "MySQL", "REST APIs", "Modern CSS3"],
+    title: "SMART EXPENSE CLASSIFIER — AI-Powered Expense Tracker",
+    subtitle: "Machine Learning Expense Categorization & Budget Analytics",
+    category: "AI & FINTECH APPLICATION",
+    badge: "AI-Powered Personal Finance",
+    image: "/images/project-expense-dashboard.png",
+    images: [
+      {
+        url: "/images/project-expense-dashboard.png",
+        title: "Smart Expense Classifier — Monthly Budget Dashboard & Spending Progress",
+        label: "Budget Dashboard"
+      },
+      {
+        url: "/images/project-expense-list.png",
+        title: "Smart Expense Classifier — Expense List, Categorization & Transaction Actions",
+        label: "Expense List"
+      }
+    ],
+    description: "An intelligent expense management application that simplifies personal finance tracking through machine learning-based transaction categorization. Features include expense management, automated classification, interactive financial dashboards, spending analytics with pie chart breakdown, and transaction history to help users better understand and manage their spending habits.",
+    technologies: ["React.js", "Python / ML", "JavaScript ES6+", "Chart.js", "REST APIs", "Modern CSS3"],
     githubUrl: "https://github.com/ansaf-m",
-    liveUrl: "https://demo.ansafdev.com/client-portals",
+    liveUrl: "https://demo.ansafdev.com/expense-tracker",
     thumbnails: [
-      { tag: "CLIENT ADMIN", title: "Custom Admin Dashboards", detail: "Dynamic Workflows & Data Tables" },
-      { tag: "RESPONSIVE UI", title: "Cross-Device Adaptive Layout", detail: "Mobile-First Fluid Interfaces" }
+      { tag: "BUDGET CONTROL", title: "Monthly Budget & Live Bar", detail: "Real-time limit tracking with visual progress indicator" },
+      { tag: "SPENDING ANALYTICS", title: "Interactive Pie Chart Analytics", detail: "Automated ML categorization & expense breakdown" }
     ],
     caseStudy: {
-      problem: "Freelance clients need dependable, custom-built web portals tailored to their unique operational workflows without cumbersome licensing overhead or slow interfaces.",
-      architecture: "Modular React client communicating with a lightweight Node.js/Express REST backend and normalized MySQL database with secure token authorization.",
-      solution: "Engineered responsive client dashboards, dynamic lead and order forms, customer relationship tracking, and administrative control panels.",
+      problem: "Personal finance tracking frequently suffers from tedious manual data entry and lack of visual clarity, leading users to abandon tracking and exceed monthly budget thresholds without real-time feedback.",
+      architecture: "React dashboard frontend paired with REST API microservices, machine learning classification model for automated expense categorization, and Chart.js pie chart rendering for category breakdown.",
+      solution: "Engineered an intuitive personal finance platform where users set monthly budgets, add expenses with automatic ML category classification, track budget consumption in real-time with visual indicators, and analyze spending patterns through dynamic pie charts.",
       metrics: [
-        { label: "Deployment", value: "Production Deployed" },
-        { label: "Responsiveness", value: "Mobile & Desktop 100%" },
-        { label: "Client Satisfaction", value: "Verified Delivery" }
+        { label: "Categorization", value: "Automated ML" },
+        { label: "Analytics", value: "Pie Chart Visuals" },
+        { label: "Budgeting", value: "Real-Time Tracking" }
       ],
       keyFeatures: [
-        "Tailored administrative panels for managing client orders and services",
-        "Mobile-first responsive layouts tested across iOS, Android, and desktop browsers",
-        "Automated form validation, instant email dispatch, and secure database persistence",
-        "Clean, maintainable component hierarchy allowing rapid client updates"
+        "Monthly budget configuration with live progress bar tracking budget utilization vs total limit",
+        "Machine learning-driven automatic transaction categorization for seamless expense logging",
+        "Interactive financial dashboard with dynamic pie chart spending analytics across categories",
+        "Comprehensive expense history table with inline edit, delete, and date filtering capabilities",
+        "Responsive, lightweight user interface optimized for fast daily transaction tracking"
       ]
     }
   },
@@ -257,32 +307,40 @@ export const PROJECTS = [
     id: "interactive-digital-engine",
     number: "05",
     title: "Interactive 3D Portfolio & Digital Systems Showcase",
-    subtitle: "High-Performance Three.js & Framer Motion Experience",
+    subtitle: "High-Performance Three.js & Multi-Theme Architecture",
     category: "DIGITAL EXPERIENCES",
     badge: "Creative Engineering & 3D Web",
-    image: "/images/project-movies.jpg",
-    description: "A high-performance modern developer portfolio showcasing 3D particle physics, dynamic theme-reactive volumetric lighting, and synchronized scroll card stacking interactions crafted with React 19, Three.js, and Framer Motion.",
-    technologies: ["React 19", "Three.js", "React Three Fiber", "Framer Motion", "Vite", "Modern CSS"],
+    image: "/images/project-interactive-portfolio.jpg",
+    images: [
+      {
+        url: "/images/project-interactive-portfolio.jpg",
+        title: "Ansaf's Space — High-Performance Editorial Hero & Interactive Multi-Theme Experience",
+        label: "Portfolio Showcase"
+      }
+    ],
+    description: "A high-performance modern developer portfolio showcasing 3D particle physics, dynamic theme-reactive volumetric lighting, and synchronized scroll card stacking interactions crafted with React, Three.js, and modern CSS architecture.",
+    technologies: ["React", "Three.js", "React Three Fiber", "Modern CSS", "Vite", "Canvas API"],
     githubUrl: "https://github.com/ansaf-m",
-    liveUrl: "https://demo.ansafdev.com",
+    liveUrl: "https://ansafdev.com",
     thumbnails: [
       { tag: "3D PARTICLE SYSTEM", title: "Shader-Driven Particle Orb", detail: "NormalBlending & Latitudinal Math" },
-      { tag: "SCROLL DYNAMICS", title: "Sticky Card Stacking Deck", detail: "Hardware-Accelerated Native Scroll" }
+      { tag: "DESIGN SYSTEMS", title: "3 Distinct Visual Themes", detail: "Minimalism, Surrealism & Glassmorphism" }
     ],
     caseStudy: {
       problem: "Creating a standout engineering portfolio that highlights both deep distributed backend expertise and bleeding-edge creative frontend animation capabilities without compromising performance.",
-      architecture: "React 19 with Vite, GPU-accelerated Three.js canvas shaders, and synchronized CSS scroll stacking layers with zero runtime overhead.",
-      solution: "Built custom GLSL particle shaders, dynamic theme color propagation via CSS custom properties, and seamless sticky stacking card decks matching top-tier design references.",
+      architecture: "React with Vite, GPU-accelerated Three.js canvas shaders, and synchronized CSS scroll stacking layers with zero runtime overhead.",
+      solution: "Built custom particle mathematics, dynamic theme color propagation via CSS custom properties, and seamless sticky stacking card decks matching top-tier design references.",
       metrics: [
         { label: "Framerate", value: "Solid 60 FPS" },
-        { label: "Bundle Size", value: "Vite Optimized" },
-        { label: "Theme Modes", value: "4 Adaptive Themes" }
+        { label: "Architecture", value: "React + Three.js" },
+        { label: "Theme Modes", value: "3 Distinct Themes" }
       ],
       keyFeatures: [
         "3D spherical particle orb that dynamically disperses on scroll",
         "Cinematic diagonal volumetric spotlight adapting to active theme colors",
         "Physical stacking card deck with progressive sticky overlap",
-        "Full keyboard accessibility and prefers-reduced-motion compliance"
+        "Three distinct visual design identities: Editorial Minimalism, Surrealism, and Glassmorphism",
+        "Full keyboard accessibility and native browser back navigation support"
       ]
     }
   }

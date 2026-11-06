@@ -1,34 +1,38 @@
 /* ==========================================================================
    ANSAF'S SPACE — THREE DISTINCT DESIGN THEMES
-   1. Minimalism – The Essential
-   2. Surrealism – The Imagination
-   3. Glassmorphism – The Future
+   1. Minimalism – The Essential (Refined Swiss Editorial)
+   2. Surrealism – The Imagination (Cosmic Experimental Avant-Garde)
+   3. Glassmorphism – The Future (Cybernetic Translucent Cockpit)
    ========================================================================== */
 
 /* ==========================================================================
    THEME 01: MINIMALISM – THE ESSENTIAL (Default)
-   Architectural Monolith: Pure Black, White, Charcoal, Platinum
-   Strict whitespace, razor hairline borders, restrained typography
+   Refined Swiss Editorial Design:
+   Canvas: Warm off-white (#F7F6F2), Pure White (#FFFFFF) Cards
+   Typography: Deep Charcoal (#171717), Muted Grey (#777777)
+   Accent: Restrained Cobalt Blue (#3659E3) or Deep Charcoal
+   Borders: Subtle Neutral Grey (#E5E5E0)
+   No neon glow, architectural whitespace, razor hairline borders
    ========================================================================== */
 :root,
 [data-theme="minimalism"] {
-  --bg-color: #08080a;
-  --bg-gradient: radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.04) 0%, rgba(8, 8, 10, 1) 70%);
-  --surface-color: #101014;
-  --surface-hover: #16161b;
-  --surface-glass: rgba(16, 16, 20, 0.94);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-highlight: rgba(255, 255, 255, 0.32);
+  --bg-color: #F7F6F2;
+  --bg-gradient: none;
+  --surface-color: #FFFFFF;
+  --surface-hover: #EFEFEA;
+  --surface-glass: rgba(255, 255, 255, 0.96);
+  --border-color: #E5E5E0;
+  --border-highlight: #171717;
 
-  --primary-accent: #ffffff;
-  --primary-rgb: 255, 255, 255;
-  --secondary-accent: #a1a1aa;
-  --accent-glow: rgba(255, 255, 255, 0.12);
-  --accent-glow-subtle: rgba(255, 255, 255, 0.04);
+  --primary-accent: #171717;
+  --primary-rgb: 23, 23, 23;
+  --secondary-accent: #3659E3;
+  --accent-glow: rgba(0, 0, 0, 0.05);
+  --accent-glow-subtle: rgba(0, 0, 0, 0.02);
 
-  --text-main: #f8fafc;
-  --text-muted: #a1a1aa;
-  --text-dim: #71717a;
+  --text-main: #171717;
+  --text-muted: #666666;
+  --text-dim: #8E8E93;
 
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -36,12 +40,12 @@
 
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 14px;
+  --radius-lg: 12px;
   --radius-full: 9999px;
 
-  --navbar-bg: rgba(8, 8, 10, 0.94);
-  --navbar-blur: blur(12px);
-  --navbar-border: 1px solid rgba(255, 255, 255, 0.08);
+  --navbar-bg: rgba(247, 246, 242, 0.94);
+  --navbar-blur: blur(14px);
+  --navbar-border: 1px solid #E5E5E0;
 
   --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -50,70 +54,80 @@
 
 /* ==========================================================================
    THEME 02: SURREALISM – THE IMAGINATION
-   Cosmic Avant-Garde: Cosmic Obsidian, Radiant Magenta, Electric Rose, Deep Plum
-   Expressive typography, radiant auras, artistic gradients, fluid depths
+   Advanced Artistic Color System & Art Direction:
+   Primary Atmospheric: Deep Obsidian (#100D14), Midnight Aubergine (#21152B)
+   Secondary Depth: Dark Plum (#35203F), Muted Violet (#634477)
+   Artistic Highlights: Electric Lavender (#B69AFF), Dusty Lilac (#9276B5)
+   Vibrant Accents: Acid Lime (#D4FF5C), Electric Coral (#FF6B62), Dream Blue (#6FA8FF)
+   Refined Details: Warm Champagne (#E8D5B5), Metallic Silver (#C5C1CC)
    ========================================================================== */
 [data-theme="surrealism"] {
-  --bg-color: #07030e;
-  --bg-gradient: radial-gradient(ellipse at 80% 10%, rgba(217, 70, 239, 0.18) 0%, rgba(244, 63, 94, 0.12) 40%, rgba(7, 3, 14, 1) 80%);
-  --surface-color: #130826;
-  --surface-hover: #1e0d3b;
-  --surface-glass: rgba(19, 8, 38, 0.82);
-  --border-color: rgba(217, 70, 239, 0.2);
-  --border-highlight: rgba(232, 121, 249, 0.55);
+  --bg-color: #100D14; /* Deep Obsidian Foundation */
+  --bg-gradient: none;
+  --surface-color: #21152B; /* Midnight Aubergine */
+  --surface-hover: #35203F; /* Dark Plum */
+  --surface-glass: rgba(33, 21, 43, 0.88);
+  --border-color: rgba(182, 154, 255, 0.22);
+  --border-highlight: #D4FF5C; /* Acid Lime */
 
-  --primary-accent: #e879f9;
-  --primary-rgb: 232, 121, 249;
-  --secondary-accent: #f43f5e;
-  --accent-glow: rgba(232, 121, 249, 0.4);
-  --accent-glow-subtle: rgba(192, 38, 211, 0.16);
+  --primary-accent: #D4FF5C; /* Acid Lime */
+  --primary-rgb: 212, 255, 92;
+  --secondary-accent: #FF6B62; /* Electric Coral */
+  --accent-tertiary: #B69AFF; /* Electric Lavender */
+  --accent-quaternary: #6FA8FF; /* Dream Blue */
+  --accent-glow: rgba(212, 255, 92, 0.32);
+  --accent-glow-subtle: rgba(255, 107, 98, 0.16);
 
-  --text-main: #fdf4ff;
-  --text-muted: #d8b4fe;
-  --text-dim: #a855f7;
+  --text-main: #E8D5B5; /* Warm Champagne - rich artistic warmth */
+  --text-title: #B69AFF; /* Electric Lavender */
+  --text-muted: #C5C1CC; /* Metallic Silver */
+  --text-dim: #9276B5; /* Dusty Lilac */
 
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px 12px 28px 12px;
   --radius-full: 9999px;
 
-  --navbar-bg: rgba(19, 8, 38, 0.85);
+  --navbar-bg: rgba(16, 13, 20, 0.92);
   --navbar-blur: blur(20px);
-  --navbar-border: 1px solid rgba(217, 70, 239, 0.25);
+  --navbar-border: 1px solid rgba(182, 154, 255, 0.22);
 }
 
 /* ==========================================================================
    THEME 03: GLASSMORPHISM – THE FUTURE
-   Cybernetic Translucent Glass: Deep Sapphire Obsidian, Electric Cyan, Neon Indigo
-   Specular reflections, frosted cockpit surfaces, glowing HUD accents
+   Layered Translucent Glass Cockpit:
+   Canvas: Deep Midnight Navy (#080B18), Dark Indigo (#11172B)
+   Accents: Electric Violet (#8B5CF6), Cyan (#42D9FF), Soft Lavender (#C4B5FD)
+   Translucent frosted surfaces (6-12%), specular top borders (15-25%)
    ========================================================================== */
 [data-theme="glassmorphism"] {
-  --bg-color: #040712;
-  --bg-gradient: radial-gradient(ellipse at 50% -10%, rgba(56, 189, 248, 0.22) 0%, rgba(99, 102, 241, 0.12) 45%, rgba(4, 7, 18, 1) 80%);
-  --surface-color: #081028;
-  --surface-hover: #0f1e4a;
-  --surface-glass: rgba(8, 16, 40, 0.68);
-  --border-color: rgba(56, 189, 248, 0.18);
-  --border-highlight: rgba(56, 189, 248, 0.48);
+  --bg-color: #080B18;
+  --bg-gradient: radial-gradient(ellipse at 50% -10%, rgba(66, 217, 255, 0.2) 0%, rgba(139, 92, 246, 0.14) 45%, rgba(8, 11, 24, 1) 80%);
+  --surface-color: #0B132B;
+  --surface-hover: #121F45;
+  --surface-glass: rgba(255, 255, 255, 0.08);
+  --border-color: rgba(255, 255, 255, 0.15);
+  --border-highlight: #42D9FF;
 
-  --primary-accent: #38bdf8;
-  --primary-rgb: 56, 189, 248;
-  --secondary-accent: #818cf8;
-  --accent-glow: rgba(56, 189, 248, 0.45);
-  --accent-glow-subtle: rgba(56, 189, 248, 0.15);
+  --primary-accent: #42D9FF;
+  --primary-rgb: 66, 217, 255;
+  --secondary-accent: #8B5CF6;
+  --accent-tertiary: #C4B5FD;
+  --accent-glow: rgba(66, 217, 255, 0.45);
+  --accent-glow-subtle: rgba(139, 92, 246, 0.18);
 
-  --text-main: #f0f9ff;
-  --text-muted: #93c5fd;
-  --text-dim: #60a5fa;
+  --text-main: #F0F9FF;
+  --text-muted: #93C5FD;
+  --text-dim: #60A5FA;
 
   --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
   --radius-full: 9999px;
 
-  --navbar-bg: rgba(8, 16, 40, 0.75);
+  --navbar-bg: rgba(8, 11, 24, 0.72);
   --navbar-blur: blur(28px) saturate(190%);
-  --navbar-border: 1px solid rgba(56, 189, 248, 0.28);
+  --navbar-border: 1px solid rgba(255, 255, 255, 0.16);
 }
 
 /* ==========================================================================
@@ -141,14 +155,45 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--bg-color);
-  background-image:
-    radial-gradient(circle at 50% -20%, rgba(var(--primary-rgb), 0.16), transparent 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 100% 100%, 48px 48px, 48px 48px;
   overflow-x: hidden;
   position: relative;
   transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+/* Theme Background Textures */
+[data-theme="minimalism"] body {
+  background-color: #F7F6F2;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px;
+}
+
+[data-theme="surrealism"] body {
+  background-color: #100D14;
+  background-image:
+    /* Cool dream-blue atmospheric zone top-left */
+    radial-gradient(ellipse 900px 700px at 12% 15%, rgba(111, 168, 255, 0.08) 0%, transparent 65%),
+    /* Warm electric-coral & magenta atmospheric zone top-right */
+    radial-gradient(ellipse 800px 600px at 88% 22%, rgba(255, 107, 98, 0.08) 0%, rgba(232, 121, 216, 0.05) 45%, transparent 70%),
+    /* Muted violet & plum mid-body contour */
+    radial-gradient(ellipse 1000px 800px at 50% 55%, rgba(99, 68, 119, 0.12) 0%, rgba(53, 32, 63, 0.08) 50%, transparent 75%),
+    /* Acid-lime subtle surreal underglow bottom-left */
+    radial-gradient(ellipse 700px 600px at 18% 85%, rgba(212, 255, 92, 0.06) 0%, transparent 60%),
+    /* Refined metallic silver micro-grid texture */
+    linear-gradient(to right, rgba(197, 193, 204, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 193, 204, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 54px 54px, 54px 54px;
+}
+
+[data-theme="glassmorphism"] body {
+  background-color: #080B18;
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgba(66, 217, 255, 0.18) 0%, rgba(139, 92, 246, 0.14) 40%, transparent 75%),
+    radial-gradient(ellipse at 85% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 55%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
 }
 
 /* Custom Scrollbar */
@@ -161,7 +206,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--border-color);
   border-radius: var(--radius-full);
 }
 
@@ -170,28 +215,25 @@ body {
 }
 
 /* Selection */
-::selection {
-  background: var(--primary-accent);
-  color: #000000;
+[data-theme="minimalism"] ::selection {
+  background: #171717;
+  color: #FFFFFF;
 }
 
 [data-theme="surrealism"] ::selection {
-  color: #ffffff;
+  background: #D4FF5C;
+  color: #100E13;
 }
 
 [data-theme="glassmorphism"] ::selection {
-  color: #040712;
+  background: #42D9FF;
+  color: #080B18;
 }
 
 /* ==========================================================================
    TYPOGRAPHY
    ========================================================================== */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -225,7 +267,7 @@ a {
   z-index: 9999;
   transform: translate(-50%, -50%);
   transition: width 0.15s ease, height 0.15s ease, background-color 0.2s ease;
-  box-shadow: 0 0 10px var(--primary-accent);
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .cursor-follower {
@@ -267,13 +309,13 @@ a {
   width: 100%;
   height: 3px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .reading-progress-bar {
   height: 100%;
   background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-  box-shadow: 0 0 12px var(--primary-accent);
+  box-shadow: 0 0 10px var(--accent-glow);
   transition: width 0.1s ease-out;
 }
 
@@ -306,7 +348,7 @@ section {
   padding: 6px 14px;
   border-radius: var(--radius-full);
   background: var(--accent-glow-subtle);
-  border: 1px solid var(--border-highlight);
+  border: 1px solid var(--border-color);
   color: var(--primary-accent);
   font-family: var(--font-code);
   font-size: 0.85rem;
@@ -321,10 +363,7 @@ section {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   margin-bottom: 14px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-main);
   transition: all 0.3s ease;
 }
 
@@ -354,36 +393,26 @@ section {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-  color: #000000;
-  box-shadow: 0 4px 20px var(--accent-glow);
-}
-
-[data-theme="surrealism"] .btn-primary {
-  color: #ffffff;
-}
-
-[data-theme="glassmorphism"] .btn-primary {
-  color: #040712;
+  background: var(--primary-accent);
+  color: #FFFFFF;
+  box-shadow: 0 4px 18px var(--accent-glow);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px var(--accent-glow);
   filter: brightness(1.08);
 }
 
 .btn-outline {
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   border-color: var(--border-color);
   color: var(--text-main);
-  backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
-  background: rgba(var(--primary-rgb), 0.1);
+  background: var(--surface-hover);
   border-color: var(--primary-accent);
-  color: #ffffff;
+  color: var(--primary-accent);
   transform: translateY(-2px);
 }
 
@@ -401,7 +430,7 @@ section {
   border-radius: var(--radius-full);
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.25);
-  color: #34d399;
+  color: #10b981;
   font-size: 0.85rem;
   font-weight: 500;
 }
@@ -416,23 +445,15 @@ section {
 }
 
 @keyframes pulse-dot {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.6;
-  }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
 }
 
 /* ==========================================================================
-   GLASSMORPHISM CARDS
+   GLASSMORPHISM CARDS (Base Utility)
    ========================================================================== */
 .glass-card {
-  background: var(--surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--surface-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 28px;
@@ -443,47 +464,7 @@ section {
 
 .glass-card:hover {
   border-color: var(--border-highlight);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 0 24px var(--accent-glow-subtle);
   transform: translateY(-4px);
-}
-
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-}
-
-/* ==========================================================================
-   ANIMATIONS & EFFECTS
-   ========================================================================== */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-12px) rotate(3deg);
-  }
-}
-
-@keyframes float-reverse {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(12px) rotate(-3deg);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-reverse 7s ease-in-out infinite 1s;
 }
 
 /* Ambient glow blobs */
@@ -494,353 +475,1243 @@ section {
   border-radius: 50%;
   filter: blur(120px);
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.2;
   z-index: 0;
   transition: background-color var(--transition-smooth), opacity var(--transition-smooth);
 }
 
-.glow-orb-primary {
-  background: var(--primary-accent);
+.glow-orb-primary { background: var(--primary-accent); }
+.glow-orb-secondary { background: var(--secondary-accent); }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
 }
 
-.glow-orb-secondary {
-  background: var(--secondary-accent);
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-3deg); }
 }
 
-/* Code block highlight */
-.code-highlight {
-  background: #0d1117;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  font-family: var(--font-code);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  overflow-x: auto;
-}
-
-/* Grid layout helpers */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 992px) {
-  .grid-2,
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed { animation: float-reverse 7s ease-in-out infinite 1s; }
 
 /* ==========================================================================
-   THEME 01 SPECIFIC OVERRIDES: MINIMALISM — THE ESSENTIAL
-   Clean, sharp, editorial, restrained, monochrome elegance
+   THEME 01: MINIMALISM — REFINED EDITORIAL DESIGN OVERRIDES
    ========================================================================== */
 [data-theme="minimalism"] .portfolio-navbar {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(247, 246, 242, 0.94) !important;
+  border-bottom: 1px solid #E5E5E0 !important;
+}
+
+[data-theme="minimalism"] .portfolio-navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
 [data-theme="minimalism"] .glow-orb {
-  opacity: 0.03 !important;
-  filter: blur(180px);
+  display: none !important;
 }
 
 [data-theme="minimalism"] .btn-primary {
-  background: #ffffff !important;
-  color: #000000 !important;
-  border-radius: 4px;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+  background: #171717 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #171717 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="minimalism"] .btn-primary:hover {
+  background: #2a2a2a !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16) !important;
 }
 
 [data-theme="minimalism"] .btn-outline {
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .btn-outline:hover {
+  background: #F7F6F2 !important;
+  border-color: #171717 !important;
+  color: #171717 !important;
 }
 
 [data-theme="minimalism"] .section-badge {
-  background: transparent !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #ffffff !important;
-  border-radius: 4px;
-  font-size: 0.78rem;
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  border-radius: 4px !important;
+  font-size: 0.78rem !important;
 }
 
-[data-theme="minimalism"] .glass-card {
-  background: #0d0d11 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+[data-theme="minimalism"] .section-title {
+  color: #171717 !important;
+  background: none !important;
+  -webkit-text-fill-color: #171717 !important;
 }
 
-[data-theme="minimalism"] .glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.28) !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9) !important;
+/* Minimalism Hero Typography */
+[data-theme="minimalism"] .hero-name-fading {
+  background: linear-gradient(180deg, #171717 30%, #2c2c2c 70%, #555555 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: none !important;
+  animation: none !important;
 }
 
-[data-theme="minimalism"] .skill-group-card {
-  background: #0e0e12 !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+[data-theme="minimalism"] .hero-role-behind-text {
+  background: linear-gradient(180deg, #666666 20%, #888888 65%, #aaaaaa 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: none !important;
+}
+
+[data-theme="minimalism"] .photo-ambient-halo {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.04) 0%, transparent 70%) !important;
+}
+
+[data-theme="minimalism"] .photo-cutout-img {
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12)) !important;
+}
+
+/* Minimalism About Section */
+[data-theme="minimalism"] .about-kinetic-section {
+  background: #F7F6F2 !important;
+}
+
+[data-theme="minimalism"] .about-bg-media {
+  opacity: 0.04 !important;
+}
+
+[data-theme="minimalism"] .about-word-top,
+[data-theme="minimalism"] .about-word-bottom {
+  background: linear-gradient(180deg, #171717 35%, #444444 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: none !important;
+}
+
+[data-theme="minimalism"] .about-expanding-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
   border-radius: 12px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[data-theme="minimalism"] .cinematic-spotlight-world {
+  opacity: 0.45 !important;
+}
+
+[data-theme="minimalism"] .spotlight-upper-aperture {
+  background: radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.95) 0%, rgba(220, 220, 215, 0.6) 45%, transparent 100%) !important;
+}
+
+[data-theme="minimalism"] .spotlight-ambient-mist {
+  background: radial-gradient(ellipse at 50% 28%, rgba(240, 240, 235, 0.6) 0%, transparent 70%) !important;
+}
+
+[data-theme="minimalism"] .spotlight-main-beam {
+  background: linear-gradient(to right, transparent 0%, rgba(245, 245, 240, 0.5) 50%, transparent 100%) !important;
+}
+
+[data-theme="minimalism"] .about-pillar-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="minimalism"] .about-pillar-card:hover {
+  border-color: #171717 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="minimalism"] .about-pillar-tag {
+  color: #3659E3 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="minimalism"] .about-pillar-num {
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .about-pillar-title {
+  color: #171717 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="minimalism"] .about-pillar-desc {
+  color: #666666 !important;
+  text-shadow: none !important;
+}
+
+/* Minimalism Skills */
+[data-theme="minimalism"] .skill-group-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
 }
 
 [data-theme="minimalism"] .skill-item-card {
-  border-radius: 8px !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(255, 255, 255, 0.02) !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
 }
 
 [data-theme="minimalism"] .skill-item-card:hover {
-  border-color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: #171717 !important;
+  background: #F7F6F2 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="minimalism"] .skill-logo-box {
+  background: #F7F6F2 !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 6px !important;
+}
+
+[data-theme="minimalism"] .skills-filter-tabs {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 6px !important;
+}
+
+[data-theme="minimalism"] .skills-tab-btn {
+  color: #777777 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .skills-tab-btn:hover {
+  color: #171717 !important;
+  background: #F7F6F2 !important;
+}
+
+[data-theme="minimalism"] .skills-tab-btn.active {
+  background: #171717 !important;
+  color: #FFFFFF !important;
+  border-color: #171717 !important;
+}
+
+[data-theme="minimalism"] .skills-tab-btn.active .tab-count {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="minimalism"] .group-icon-bubble {
+  background: #F7F6F2 !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .group-badge {
+  background: #F7F6F2 !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #3659E3 !important;
+}
+
+/* Minimalism Projects */
+[data-theme="minimalism"] .projects-hero-heading {
+  color: #171717 !important;
 }
 
 [data-theme="minimalism"] .project-stack-card {
-  background: #0c0c10 !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8), 0 20px 45px rgba(0, 0, 0, 0.9) !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06) !important;
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .card-number {
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .card-category {
+  color: #3659E3 !important;
+}
+
+[data-theme="minimalism"] .card-title {
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .card-description {
+  color: #666666 !important;
+}
+
+[data-theme="minimalism"] .card-tech-pill {
+  background: #F7F6F2 !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .media-thumb-box {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 8px !important;
+}
+
+[data-theme="minimalism"] .media-thumb-box:hover {
+  border-color: #171717 !important;
+  background: #F7F6F2 !important;
+}
+
+[data-theme="minimalism"] .thumb-badge {
+  color: #3659E3 !important;
+}
+
+[data-theme="minimalism"] .thumb-title {
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .thumb-detail {
+  color: #777777 !important;
 }
 
 [data-theme="minimalism"] .card-pill-live {
-  background: #ffffff !important;
-  color: #000000 !important;
-  border: 1px solid #ffffff !important;
+  background: #171717 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #171717 !important;
   border-radius: 4px !important;
 }
 
 [data-theme="minimalism"] .card-pill-study {
   background: transparent !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: #ffffff !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
   border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .card-pill-study:hover {
+  background: #171717 !important;
+  color: #FFFFFF !important;
+  border-color: #171717 !important;
 }
 
 [data-theme="minimalism"] .card-pill-ghost {
+  border: 1px solid #E5E5E0 !important;
+  color: #666666 !important;
   border-radius: 4px !important;
 }
 
-[data-theme="minimalism"] .card-tech-pill {
-  border-radius: 4px !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+[data-theme="minimalism"] .card-pill-ghost:hover {
+  color: #171717 !important;
+  border-color: #171717 !important;
 }
 
-[data-theme="minimalism"] .about-expanding-card {
-  background: rgba(10, 10, 14, 0.96) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  border-radius: 16px !important;
+[data-theme="minimalism"] .media-hero-container {
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 8px !important;
+}
+
+[data-theme="minimalism"] .btn-scroll-top {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Minimalism Timeline & Contact & Footer */
+[data-theme="minimalism"] .glass-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="minimalism"] .form-input {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .form-input:focus {
+  border-color: #171717 !important;
+  box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.08) !important;
+}
+
+[data-theme="minimalism"] .social-channel-btn {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E0 !important;
+  color: #171717 !important;
+  border-radius: 4px !important;
+}
+
+[data-theme="minimalism"] .social-channel-btn:hover {
+  background: #F7F6F2 !important;
+  border-color: #171717 !important;
+  color: #171717 !important;
+}
+
+[data-theme="minimalism"] .portfolio-footer {
+  background: #F7F6F2 !important;
+  border-top: 1px solid #E5E5E0 !important;
 }
 
 /* ==========================================================================
-   THEME 02 SPECIFIC OVERRIDES: SURREALISM — THE IMAGINATION
-   Cosmic Avant-Garde, Duotone Gradients, Ethereal Glowing Auras
+   THEME 02: SURREALISM — EXPERIMENTAL ARTISTIC EXPERIENCE OVERRIDES
+   Color Hierarchy & Art Direction:
+   - 50% Foundation: Deep Obsidian (#100D14), Midnight Aubergine (#21152B)
+   - 20% Depth Surfaces: Dark Plum (#35203F), Muted Violet (#634477)
+   - 15% Artistic Highlights: Electric Lavender (#B69AFF), Dusty Lilac (#9276B5)
+   - 10% Vibrant Contrast: Acid Lime (#D4FF5C), Electric Coral (#FF6B62), Dream Blue (#6FA8FF)
+   - 5% Refined Accents: Warm Champagne (#E8D5B5), Metallic Silver (#C5C1CC)
    ========================================================================== */
+
+/* ── 1. Navbar & Header ── */
 [data-theme="surrealism"] .portfolio-navbar {
-  border-bottom: 1px solid rgba(217, 70, 239, 0.25);
-  box-shadow: 0 10px 30px rgba(192, 38, 211, 0.12);
+  background: rgba(16, 13, 20, 0.92) !important;
+  border-bottom: 1px solid rgba(182, 154, 255, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(16, 13, 20, 0.8), 0 1px 0 rgba(212, 255, 92, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
 }
 
+[data-theme="surrealism"] .nav-link {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .nav-link:hover {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .nav-link.active {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .nav-link.active::after {
+  background: #D4FF5C !important;
+  box-shadow: 0 0 10px #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .theme-selector-trigger {
+  background: rgba(33, 21, 43, 0.75) !important;
+  border: 1px solid rgba(182, 154, 255, 0.3) !important;
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .theme-selector-trigger:hover {
+  border-color: #D4FF5C !important;
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .theme-dropdown-menu {
+  background: rgba(26, 17, 34, 0.96) !important;
+  border: 1px solid rgba(182, 154, 255, 0.3) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(182, 154, 255, 0.15) !important;
+}
+
+[data-theme="surrealism"] .reading-progress-bar {
+  background: linear-gradient(90deg, #6FA8FF 0%, #B69AFF 35%, #FF6B62 70%, #D4FF5C 100%) !important;
+}
+
+/* ── 2. Global Buttons & Badges ── */
 [data-theme="surrealism"] .btn-primary {
-  background: linear-gradient(135deg, #e879f9 0%, #f43f5e 100%) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 22px rgba(232, 121, 249, 0.45) !important;
+  background: linear-gradient(135deg, #D4FF5C 0%, #aef528 100%) !important;
+  color: #100D14 !important;
+  font-weight: 800 !important;
+  border-radius: 16px 4px 16px 4px !important;
+  box-shadow: 0 4px 22px rgba(212, 255, 92, 0.42) !important;
+  border: 1px solid #D4FF5C !important;
 }
 
 [data-theme="surrealism"] .btn-primary:hover {
-  box-shadow: 0 8px 32px rgba(244, 63, 94, 0.5) !important;
+  background: linear-gradient(135deg, #FF6B62 0%, #D4FF5C 100%) !important;
+  color: #100D14 !important;
+  box-shadow: 0 8px 32px rgba(255, 107, 98, 0.5) !important;
   transform: translateY(-2px) scale(1.02);
 }
 
 [data-theme="surrealism"] .btn-outline {
-  border-color: rgba(232, 121, 249, 0.35);
-  color: #fdf4ff;
+  border-color: rgba(182, 154, 255, 0.35) !important;
+  color: #E8D5B5 !important;
+  background: rgba(33, 21, 43, 0.6) !important;
+  border-radius: 16px 4px 16px 4px !important;
 }
 
 [data-theme="surrealism"] .btn-outline:hover {
-  background: rgba(232, 121, 249, 0.15);
-  border-color: var(--primary-accent);
+  background: rgba(212, 255, 92, 0.14) !important;
+  border-color: #D4FF5C !important;
+  color: #D4FF5C !important;
 }
 
 [data-theme="surrealism"] .section-title {
-  background: linear-gradient(135deg, #ffffff 30%, #f5d0fe 65%, #e879f9 100%) !important;
+  background: linear-gradient(135deg, #E8D5B5 15%, #B69AFF 55%, #D4FF5C 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 2px 18px rgba(182, 154, 255, 0.25)) !important;
+}
+
+[data-theme="surrealism"] .section-subtitle {
+  color: #C5C1CC !important;
 }
 
 [data-theme="surrealism"] .section-badge {
-  background: rgba(217, 70, 239, 0.12) !important;
-  border: 1px solid rgba(232, 121, 249, 0.4) !important;
-  color: #e879f9 !important;
-  box-shadow: 0 0 14px rgba(217, 70, 239, 0.25);
+  background: rgba(33, 21, 43, 0.85) !important;
+  border: 1px solid rgba(212, 255, 92, 0.35) !important;
+  color: #D4FF5C !important;
+  box-shadow: 0 0 16px rgba(212, 255, 92, 0.2) !important;
 }
 
-[data-theme="surrealism"] .glass-card {
-  background: rgba(19, 8, 38, 0.8) !important;
-  border: 1px solid rgba(217, 70, 239, 0.22) !important;
-  border-radius: 28px !important;
-  box-shadow: 0 15px 40px rgba(12, 4, 25, 0.7), 0 0 30px rgba(192, 38, 211, 0.18) !important;
+/* ── 3. Hero Section Overrides ── */
+[data-theme="surrealism"] .hero-master-section {
+  background: #100D14 !important;
 }
 
-[data-theme="surrealism"] .glass-card:hover {
-  border-color: rgba(232, 121, 249, 0.55) !important;
-  box-shadow: 0 18px 50px rgba(12, 4, 25, 0.8), 0 0 35px rgba(232, 121, 249, 0.3) !important;
+[data-theme="surrealism"] .glow-orb-primary {
+  background: radial-gradient(circle, rgba(111, 168, 255, 0.32) 0%, rgba(99, 68, 119, 0.2) 50%, transparent 72%) !important;
+  opacity: 0.8 !important;
 }
 
-[data-theme="surrealism"] .skill-group-card {
-  background: linear-gradient(180deg, rgba(25, 11, 48, 0.85) 0%, rgba(15, 6, 30, 0.85) 100%) !important;
-  border: 1px solid rgba(217, 70, 239, 0.25) !important;
-  border-radius: 28px !important;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(217, 70, 239, 0.12) !important;
+[data-theme="surrealism"] .glow-orb-secondary {
+  background: radial-gradient(circle, rgba(255, 107, 98, 0.28) 0%, rgba(232, 121, 216, 0.16) 50%, transparent 72%) !important;
+  opacity: 0.8 !important;
 }
 
-[data-theme="surrealism"] .skill-item-card {
-  border-radius: 20px !important;
-  border: 1px solid rgba(217, 70, 239, 0.16) !important;
+[data-theme="surrealism"] .photo-ambient-halo {
+  background: radial-gradient(ellipse at 50% 60%, rgba(182, 154, 255, 0.25) 0%, rgba(111, 168, 255, 0.16) 35%, rgba(255, 107, 98, 0.1) 60%, transparent 75%) !important;
+  filter: blur(60px) !important;
 }
 
-[data-theme="surrealism"] .skill-item-card:hover {
-  border-color: #e879f9 !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(232, 121, 249, 0.28) !important;
+[data-theme="surrealism"] .hero-name-fading {
+  background: linear-gradient(135deg, #B69AFF 0%, #E8D5B5 55%, #D4FF5C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 28px rgba(182, 154, 255, 0.38)) !important;
 }
 
-[data-theme="surrealism"] .project-stack-card {
-  background: linear-gradient(180deg, #180930 0%, #0f0520 100%) !important;
-  border: 1px solid rgba(217, 70, 239, 0.28) !important;
-  border-radius: 32px !important;
-  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.8), 0 24px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(192, 38, 211, 0.18) !important;
+[data-theme="surrealism"] .hero-role-behind-text {
+  background: linear-gradient(180deg, #9276B5 15%, #634477 75%, rgba(111, 168, 255, 0.35) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 22px rgba(99, 68, 119, 0.4)) !important;
 }
 
-[data-theme="surrealism"] .card-pill-live {
-  background: linear-gradient(135deg, rgba(232, 121, 249, 0.25), rgba(244, 63, 94, 0.25)) !important;
-  border: 1px solid rgba(232, 121, 249, 0.5) !important;
-  color: #ffffff !important;
+/* ── 4. About Section Overrides ── */
+[data-theme="surrealism"] .about-kinetic-section {
+  background: #100D14 !important;
 }
 
-[data-theme="surrealism"] .card-pill-live:hover {
-  background: linear-gradient(135deg, #e879f9, #f43f5e) !important;
-  box-shadow: 0 0 24px rgba(232, 121, 249, 0.6) !important;
+[data-theme="surrealism"] .about-word-top,
+[data-theme="surrealism"] .about-word-bottom {
+  background: linear-gradient(135deg, #E8D5B5 0%, #B69AFF 65%, #6FA8FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 6px 28px rgba(182, 154, 255, 0.35)) !important;
 }
 
 [data-theme="surrealism"] .about-expanding-card {
-  background: rgba(14, 5, 28, 0.92) !important;
-  border: 1.5px solid rgba(232, 121, 249, 0.35) !important;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 50px rgba(232, 121, 249, 0.25) !important;
-  border-radius: 30px !important;
+  background: linear-gradient(145deg, rgba(53, 32, 63, 0.94) 0%, rgba(33, 21, 43, 0.96) 55%, rgba(16, 13, 20, 0.98) 100%) !important;
+  border: 1.5px solid rgba(182, 154, 255, 0.3) !important;
+  border-top: 2px solid rgba(212, 255, 92, 0.45) !important;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.92), 0 0 50px rgba(99, 68, 119, 0.28) !important;
+  border-radius: 32px 14px 32px 14px !important;
+}
+
+[data-theme="surrealism"] .spotlight-upper-aperture {
+  background: radial-gradient(ellipse at 50% 60%, rgba(232, 213, 181, 0.95) 0%, rgba(182, 154, 255, 0.6) 40%, rgba(111, 168, 255, 0.3) 70%, transparent 100%) !important;
+}
+
+[data-theme="surrealism"] .spotlight-ambient-mist {
+  background: radial-gradient(ellipse at 50% 28%, rgba(182, 154, 255, 0.32) 0%, rgba(111, 168, 255, 0.18) 45%, transparent 75%) !important;
+}
+
+[data-theme="surrealism"] .spotlight-main-beam {
+  background: linear-gradient(to right, transparent 0%, rgba(182, 154, 255, 0.15) 20%, rgba(232, 213, 181, 0.35) 50%, rgba(111, 168, 255, 0.18) 80%, transparent 100%) !important;
+}
+
+[data-theme="surrealism"] .about-pillar-card {
+  background: rgba(33, 21, 43, 0.78) !important;
+  border: 1px solid rgba(182, 154, 255, 0.22) !important;
+  border-radius: 24px 10px 24px 10px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+/* Pillar 01: Who I Am — Acid Lime focal contrast */
+[data-theme="surrealism"] .about-pillar-card:nth-child(1) .about-pillar-num,
+[data-theme="surrealism"] .about-pillar-card:nth-child(1) .about-pillar-label {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .about-pillar-card:nth-child(1):hover {
+  border-color: rgba(212, 255, 92, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 255, 92, 0.2) !important;
+}
+
+/* Pillar 02: What I Do — Electric Coral contrast */
+[data-theme="surrealism"] .about-pillar-card:nth-child(2) .about-pillar-num,
+[data-theme="surrealism"] .about-pillar-card:nth-child(2) .about-pillar-label {
+  color: #FF6B62 !important;
+}
+
+[data-theme="surrealism"] .about-pillar-card:nth-child(2):hover {
+  border-color: rgba(255, 107, 98, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 107, 98, 0.2) !important;
+}
+
+/* Pillar 03: What I Explore — Dream Blue contrast */
+[data-theme="surrealism"] .about-pillar-card:nth-child(3) .about-pillar-num,
+[data-theme="surrealism"] .about-pillar-card:nth-child(3) .about-pillar-label {
+  color: #6FA8FF !important;
+}
+
+[data-theme="surrealism"] .about-pillar-card:nth-child(3):hover {
+  border-color: rgba(111, 168, 255, 0.5) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(111, 168, 255, 0.2) !important;
+}
+
+[data-theme="surrealism"] .about-pillar-title {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .about-pillar-desc {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .about-scroll-cue {
+  color: #9276B5 !important;
+}
+
+[data-theme="surrealism"] .about-scroll-cue .cue-dot {
+  color: #D4FF5C !important;
+}
+
+/* ── 5. Skills Section Overrides ── */
+[data-theme="surrealism"] .skills-filter-tabs {
+  background: rgba(33, 21, 43, 0.88) !important;
+  border: 1px solid rgba(182, 154, 255, 0.24) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="surrealism"] .skills-tab-btn {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .skills-tab-btn:hover {
+  color: #E8D5B5 !important;
+  background: rgba(182, 154, 255, 0.12) !important;
+}
+
+[data-theme="surrealism"] .skills-tab-btn.active {
+  background: #D4FF5C !important;
+  color: #100D14 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 20px rgba(212, 255, 92, 0.45) !important;
+}
+
+[data-theme="surrealism"] .skills-tab-btn.active .tab-count {
+  background: #100D14 !important;
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .skill-group-card {
+  background: linear-gradient(160deg, rgba(53, 32, 63, 0.85) 0%, rgba(33, 21, 43, 0.92) 50%, rgba(16, 13, 20, 0.95) 100%) !important;
+  border: 1px solid rgba(182, 154, 255, 0.22) !important;
+  border-radius: 30px 12px 30px 12px !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="surrealism"] .group-title {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .group-subtitle {
+  color: #9276B5 !important;
+}
+
+/* Frontend Group — Dream Blue */
+[data-theme="surrealism"] .skill-group-frontend {
+  border-top: 2px solid rgba(111, 168, 255, 0.5) !important;
+}
+[data-theme="surrealism"] .skill-group-frontend .group-icon-bubble {
+  background: rgba(111, 168, 255, 0.15) !important;
+  color: #6FA8FF !important;
+  border: 1px solid rgba(111, 168, 255, 0.35) !important;
+}
+[data-theme="surrealism"] .skill-group-frontend .group-badge {
+  color: #6FA8FF !important;
+  border-color: rgba(111, 168, 255, 0.35) !important;
+  background: rgba(111, 168, 255, 0.1) !important;
+}
+[data-theme="surrealism"] .skill-group-frontend .skill-item-card:hover {
+  border-color: #6FA8FF !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 20px rgba(111, 168, 255, 0.25) !important;
+}
+
+/* Backend Group — Acid Lime */
+[data-theme="surrealism"] .skill-group-backend {
+  border-top: 2px solid rgba(212, 255, 92, 0.5) !important;
+}
+[data-theme="surrealism"] .skill-group-backend .group-icon-bubble {
+  background: rgba(212, 255, 92, 0.15) !important;
+  color: #D4FF5C !important;
+  border: 1px solid rgba(212, 255, 92, 0.35) !important;
+}
+[data-theme="surrealism"] .skill-group-backend .group-badge {
+  color: #D4FF5C !important;
+  border-color: rgba(212, 255, 92, 0.35) !important;
+  background: rgba(212, 255, 92, 0.1) !important;
+}
+[data-theme="surrealism"] .skill-group-backend .skill-item-card:hover {
+  border-color: #D4FF5C !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 255, 92, 0.25) !important;
+}
+
+/* Database Group — Electric Coral */
+[data-theme="surrealism"] .skill-group-database {
+  border-top: 2px solid rgba(255, 107, 98, 0.5) !important;
+}
+[data-theme="surrealism"] .skill-group-database .group-icon-bubble {
+  background: rgba(255, 107, 98, 0.15) !important;
+  color: #FF6B62 !important;
+  border: 1px solid rgba(255, 107, 98, 0.35) !important;
+}
+[data-theme="surrealism"] .skill-group-database .group-badge {
+  color: #FF6B62 !important;
+  border-color: rgba(255, 107, 98, 0.35) !important;
+  background: rgba(255, 107, 98, 0.1) !important;
+}
+[data-theme="surrealism"] .skill-group-database .skill-item-card:hover {
+  border-color: #FF6B62 !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 107, 98, 0.25) !important;
+}
+
+/* Tools Group — Electric Lavender */
+[data-theme="surrealism"] .skill-group-tools {
+  border-top: 2px solid rgba(182, 154, 255, 0.5) !important;
+}
+[data-theme="surrealism"] .skill-group-tools .group-icon-bubble {
+  background: rgba(182, 154, 255, 0.15) !important;
+  color: #B69AFF !important;
+  border: 1px solid rgba(182, 154, 255, 0.35) !important;
+}
+[data-theme="surrealism"] .skill-group-tools .group-badge {
+  color: #B69AFF !important;
+  border-color: rgba(182, 154, 255, 0.35) !important;
+  background: rgba(182, 154, 255, 0.1) !important;
+}
+[data-theme="surrealism"] .skill-group-tools .skill-item-card:hover {
+  border-color: #B69AFF !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 20px rgba(182, 154, 255, 0.25) !important;
+}
+
+/* E-Commerce Group — Warm Champagne */
+[data-theme="surrealism"] .skill-group-ecommerce {
+  border-top: 2px solid rgba(232, 213, 181, 0.5) !important;
+}
+[data-theme="surrealism"] .skill-group-ecommerce .group-icon-bubble {
+  background: rgba(232, 213, 181, 0.15) !important;
+  color: #E8D5B5 !important;
+  border: 1px solid rgba(232, 213, 181, 0.35) !important;
+}
+[data-theme="surrealism"] .skill-group-ecommerce .group-badge {
+  color: #E8D5B5 !important;
+  border-color: rgba(232, 213, 181, 0.35) !important;
+  background: rgba(232, 213, 181, 0.1) !important;
+}
+[data-theme="surrealism"] .skill-group-ecommerce .skill-item-card:hover {
+  border-color: #E8D5B5 !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6), 0 0 20px rgba(232, 213, 181, 0.25) !important;
+}
+
+/* Individual Skill Item Tiles */
+[data-theme="surrealism"] .skill-item-card {
+  border-radius: 20px 8px 20px 8px !important;
+  border: 1px solid rgba(197, 193, 204, 0.14) !important;
+  background: rgba(33, 21, 43, 0.68) !important;
+}
+
+[data-theme="surrealism"] .skill-item-title {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .skill-item-desc {
+  color: #9276B5 !important;
+}
+
+[data-theme="surrealism"] .skill-tag {
+  color: #C5C1CC !important;
+  background: rgba(99, 68, 119, 0.24) !important;
+  border: 1px solid rgba(182, 154, 255, 0.18) !important;
+}
+
+/* ── 6. Projects Section Overrides ── */
+[data-theme="surrealism"] .projects-hero-heading {
+  background: linear-gradient(135deg, #B69AFF 0%, #E8D5B5 45%, #FF6B62 80%, #D4FF5C 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 4px 25px rgba(182, 154, 255, 0.3)) !important;
+}
+
+[data-theme="surrealism"] .projects-hero-sub {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .projects-code-tag .code-bracket {
+  color: #9276B5 !important;
+}
+
+[data-theme="surrealism"] .projects-code-tag .code-element {
+  color: #FF6B62 !important;
+}
+
+[data-theme="surrealism"] .projects-code-tag .code-attr {
+  color: #B69AFF !important;
+}
+
+[data-theme="surrealism"] .projects-code-tag .code-value {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .projects-code-tag .code-cursor {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .project-stack-card {
+  background: linear-gradient(170deg, #35203F 0%, #21152B 45%, #100D14 100%) !important;
+  border: 1px solid rgba(182, 154, 255, 0.24) !important;
+  border-top: 2px solid rgba(212, 255, 92, 0.45) !important;
+  border-radius: 36px 14px 36px 14px !important;
+  box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.85), 0 28px 60px rgba(0, 0, 0, 0.92), 0 0 35px rgba(99, 68, 119, 0.2) !important;
+}
+
+[data-theme="surrealism"] .card-number {
+  color: #D4FF5C !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="surrealism"] .card-category {
+  color: #FF6B62 !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="surrealism"] .card-title {
+  color: #E8D5B5 !important;
+  transition: color 0.2s ease !important;
+}
+
+[data-theme="surrealism"] .card-title:hover {
+  color: #B69AFF !important;
+}
+
+[data-theme="surrealism"] .card-description {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .card-tech-pill {
+  background: rgba(99, 68, 119, 0.28) !important;
+  border: 1px solid rgba(182, 154, 255, 0.22) !important;
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .card-pill-live {
+  background: #D4FF5C !important;
+  color: #100D14 !important;
+  font-weight: 800 !important;
+  border: 1px solid #D4FF5C !important;
+  box-shadow: 0 4px 18px rgba(212, 255, 92, 0.35) !important;
+}
+
+[data-theme="surrealism"] .card-pill-live:hover {
+  background: #FF6B62 !important;
+  border-color: #FF6B62 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 24px rgba(255, 107, 98, 0.55) !important;
+}
+
+[data-theme="surrealism"] .card-pill-study {
+  border: 1px solid rgba(111, 168, 255, 0.45) !important;
+  color: #6FA8FF !important;
+  background: rgba(111, 168, 255, 0.1) !important;
+}
+
+[data-theme="surrealism"] .card-pill-study:hover {
+  background: #6FA8FF !important;
+  color: #100D14 !important;
+  border-color: #6FA8FF !important;
+  box-shadow: 0 4px 20px rgba(111, 168, 255, 0.45) !important;
+}
+
+[data-theme="surrealism"] .card-pill-ghost {
+  border: 1px solid rgba(197, 193, 204, 0.35) !important;
+  color: #C5C1CC !important;
+  background: rgba(33, 21, 43, 0.6) !important;
+}
+
+[data-theme="surrealism"] .card-pill-ghost:hover {
+  border-color: #E8D5B5 !important;
+  color: #E8D5B5 !important;
+  background: rgba(232, 213, 181, 0.12) !important;
+}
+
+[data-theme="surrealism"] .media-thumb-box {
+  background: rgba(33, 21, 43, 0.75) !important;
+  border: 1px solid rgba(182, 154, 255, 0.2) !important;
+  border-radius: 20px 8px 20px 8px !important;
+}
+
+[data-theme="surrealism"] .media-thumb-box:hover {
+  border-color: #D4FF5C !important;
+  box-shadow: 0 8px 24px rgba(212, 255, 92, 0.22) !important;
+}
+
+[data-theme="surrealism"] .thumb-badge {
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .thumb-dot {
+  background: #D4FF5C !important;
+  box-shadow: 0 0 10px #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .thumb-title {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .thumb-detail {
+  color: #9276B5 !important;
+}
+
+[data-theme="surrealism"] .media-card-img {
+  filter: contrast(1.06) saturate(1.12) !important;
+}
+
+/* ── 7. Timeline Section Overrides ── */
+[data-theme="surrealism"] .timeline-track > div:first-child {
+  background: linear-gradient(180deg, #B69AFF 0%, #6FA8FF 40%, #D4FF5C 80%, #FF6B62 100%) !important;
+  box-shadow: 0 0 12px rgba(182, 154, 255, 0.4) !important;
+}
+
+[data-theme="surrealism"] .timeline-track > div:last-child > div > div:first-child {
+  background: #100D14 !important;
+  border: 3px solid #D4FF5C !important;
+  box-shadow: 0 0 16px rgba(212, 255, 92, 0.7) !important;
+}
+
+[data-theme="surrealism"] .timeline-track > div:last-child > div:nth-child(even) > div:first-child {
+  border-color: #FF6B62 !important;
+  box-shadow: 0 0 16px rgba(255, 107, 98, 0.7) !important;
+}
+
+[data-theme="surrealism"] .timeline-track .glass-card {
+  background: linear-gradient(160deg, rgba(53, 32, 63, 0.8) 0%, rgba(33, 21, 43, 0.9) 100%) !important;
+  border: 1px solid rgba(182, 154, 255, 0.22) !important;
+  border-radius: 24px 8px 24px 8px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="surrealism"] .timeline-track .glass-card:hover {
+  border-color: #B69AFF !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(182, 154, 255, 0.25) !important;
+}
+
+[data-theme="surrealism"] .timeline-track h3 {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] .timeline-track h4 {
+  color: #B69AFF !important;
+}
+
+[data-theme="surrealism"] .timeline-track p {
+  color: #C5C1CC !important;
+}
+
+/* ── 8. Contact Section Overrides ── */
+[data-theme="surrealism"] #contact .glass-card {
+  background: linear-gradient(160deg, rgba(53, 32, 63, 0.82) 0%, rgba(33, 21, 43, 0.94) 100%) !important;
+  border: 1px solid rgba(182, 154, 255, 0.24) !important;
+  border-radius: 28px 10px 28px 10px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="surrealism"] #contact .glass-card:hover {
+  border-color: rgba(212, 255, 92, 0.4) !important;
+}
+
+[data-theme="surrealism"] #contact h3 {
+  color: #E8D5B5 !important;
+}
+
+[data-theme="surrealism"] #contact p {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .form-input {
+  background: rgba(16, 13, 20, 0.85) !important;
+  border: 1px solid rgba(182, 154, 255, 0.25) !important;
+  color: #E8D5B5 !important;
+  border-radius: 14px 4px 14px 4px !important;
+  transition: all 0.25s ease !important;
+}
+
+[data-theme="surrealism"] .form-input::placeholder {
+  color: rgba(197, 193, 204, 0.45) !important;
+}
+
+[data-theme="surrealism"] .form-input:focus {
+  border-color: #D4FF5C !important;
+  box-shadow: 0 0 0 3px rgba(212, 255, 92, 0.2), 0 0 16px rgba(212, 255, 92, 0.25) !important;
+  background: rgba(26, 17, 34, 0.95) !important;
+}
+
+[data-theme="surrealism"] .social-channel-btn {
+  background: rgba(33, 21, 43, 0.75) !important;
+  border: 1px solid rgba(182, 154, 255, 0.22) !important;
+  color: #C5C1CC !important;
+  border-radius: 14px 4px 14px 4px !important;
+  transition: all 0.25s ease !important;
+}
+
+[data-theme="surrealism"] .social-channel-btn:hover {
+  border-color: #D4FF5C !important;
+  color: #D4FF5C !important;
+  background: rgba(212, 255, 92, 0.12) !important;
+  box-shadow: 0 0 18px rgba(212, 255, 92, 0.25) !important;
+}
+
+[data-theme="surrealism"] #contact .status-pill {
+  background: rgba(212, 255, 92, 0.12) !important;
+  border: 1px solid rgba(212, 255, 92, 0.35) !important;
+  color: #D4FF5C !important;
+}
+
+[data-theme="surrealism"] #contact .status-dot {
+  background: #D4FF5C !important;
+  box-shadow: 0 0 8px #D4FF5C !important;
+}
+
+/* ── 9. Footer Overrides ── */
+[data-theme="surrealism"] .portfolio-footer {
+  background: #100D14 !important;
+  border-top: 1px solid rgba(182, 154, 255, 0.22) !important;
+  position: relative !important;
+}
+
+[data-theme="surrealism"] .portfolio-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(182, 154, 255, 0.4) 25%, #D4FF5C 50%, #FF6B62 75%, transparent 100%);
+  pointer-events: none;
+}
+
+[data-theme="surrealism"] .portfolio-footer a {
+  color: #C5C1CC !important;
+}
+
+[data-theme="surrealism"] .portfolio-footer a:hover {
+  color: #B69AFF !important;
+}
+
+/* ── 10. Custom Cursor Overrides ── */
+[data-theme="surrealism"] .cursor-dot {
+  background-color: #D4FF5C !important;
+  box-shadow: 0 0 12px #D4FF5C !important;
+}
+
+[data-theme="surrealism"] .cursor-follower {
+  border-color: #FF6B62 !important;
+  background: rgba(212, 255, 92, 0.06) !important;
+  box-shadow: 0 0 16px rgba(182, 154, 255, 0.35) !important;
+}
+
+[data-theme="surrealism"] .cursor-hovered .cursor-follower {
+  background: rgba(255, 107, 98, 0.15) !important;
+  border-color: #D4FF5C !important;
+  box-shadow: 0 0 24px rgba(212, 255, 92, 0.45) !important;
 }
 
 /* ==========================================================================
-   THEME 03 SPECIFIC OVERRIDES: GLASSMORPHISM — THE FUTURE
-   Cybernetic Translucent Cockpit, Specular Refraction, Neon Cyan Ambient
+   THEME 03: GLASSMORPHISM — THE FUTURE OVERRIDES
    ========================================================================== */
 [data-theme="glassmorphism"] .portfolio-navbar {
-  border-bottom: 1px solid rgba(56, 189, 248, 0.25);
-  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="glassmorphism"] .btn-primary {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%) !important;
-  color: #040712 !important;
-  font-weight: 700;
-  box-shadow: 0 4px 22px rgba(56, 189, 248, 0.45) !important;
+  background: linear-gradient(135deg, #42D9FF 0%, #8B5CF6 100%) !important;
+  color: #080B18 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 22px rgba(66, 217, 255, 0.45) !important;
 }
 
 [data-theme="glassmorphism"] .btn-primary:hover {
-  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.65) !important;
+  box-shadow: 0 8px 32px rgba(66, 217, 255, 0.65) !important;
   transform: translateY(-2px);
 }
 
 [data-theme="glassmorphism"] .btn-outline {
-  border-color: rgba(56, 189, 248, 0.3);
-  color: #f0f9ff;
-  background: rgba(8, 16, 40, 0.5);
+  border-color: rgba(66, 217, 255, 0.3) !important;
+  color: #F0F9FF !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
 [data-theme="glassmorphism"] .btn-outline:hover {
-  background: rgba(56, 189, 248, 0.15);
-  border-color: var(--primary-accent);
+  background: rgba(66, 217, 255, 0.15) !important;
+  border-color: #42D9FF !important;
 }
 
 [data-theme="glassmorphism"] .section-title {
-  background: linear-gradient(135deg, #ffffff 40%, #7dd3fc 75%, #38bdf8 100%) !important;
+  background: linear-gradient(135deg, #FFFFFF 40%, #7DD3FC 75%, #42D9FF 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
 
 [data-theme="glassmorphism"] .section-badge {
-  background: rgba(56, 189, 248, 0.1) !important;
-  border: 1px solid rgba(56, 189, 248, 0.45) !important;
-  color: #38bdf8 !important;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+  background: rgba(66, 217, 255, 0.1) !important;
+  border: 1px solid rgba(66, 217, 255, 0.45) !important;
+  color: #42D9FF !important;
+  box-shadow: 0 0 16px rgba(66, 217, 255, 0.25) !important;
 }
 
-[data-theme="glassmorphism"] .glass-card {
-  background: rgba(8, 16, 40, 0.68) !important;
-  backdrop-filter: blur(24px) saturate(190%) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(56, 189, 248, 0.22) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
-  border-radius: 22px !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 30px rgba(56, 189, 248, 0.16) !important;
+/* Glassmorphism Hero Typography */
+[data-theme="glassmorphism"] .hero-name-fading {
+  background: linear-gradient(180deg, #FFFFFF 15%, #7DD3FC 60%, #42D9FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 25px rgba(66, 217, 255, 0.45)) !important;
 }
 
-[data-theme="glassmorphism"] .glass-card:hover {
-  border-color: rgba(56, 189, 248, 0.55) !important;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 0 35px rgba(56, 189, 248, 0.3) !important;
+[data-theme="glassmorphism"] .hero-role-behind-text {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 10%, #93C5FD 50%, rgba(139, 92, 246, 0.6) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 20px rgba(66, 217, 255, 0.35)) !important;
 }
 
+/* Glassmorphism About Section */
+[data-theme="glassmorphism"] .about-kinetic-section {
+  background: #080B18 !important;
+}
+
+[data-theme="glassmorphism"] .about-word-top,
+[data-theme="glassmorphism"] .about-word-bottom {
+  background: linear-gradient(180deg, #FFFFFF 30%, #7DD3FC 70%, #42D9FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 4px 20px rgba(66, 217, 255, 0.4)) !important;
+}
+
+[data-theme="glassmorphism"] .about-expanding-card {
+  background: rgba(8, 16, 40, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-top: 2px solid rgba(255, 255, 255, 0.55) !important;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 0 50px rgba(66, 217, 255, 0.25) !important;
+  border-radius: 26px !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+}
+
+[data-theme="glassmorphism"] .spotlight-upper-aperture {
+  background: radial-gradient(ellipse at 50% 60%, rgba(255, 255, 255, 0.9) 0%, rgba(66, 217, 255, 0.85) 35%, rgba(139, 92, 246, 0.4) 65%, transparent 100%) !important;
+}
+
+[data-theme="glassmorphism"] .spotlight-ambient-mist {
+  background: radial-gradient(ellipse at 50% 28%, rgba(66, 217, 255, 0.32) 0%, rgba(139, 92, 246, 0.18) 42%, transparent 76%) !important;
+}
+
+[data-theme="glassmorphism"] .spotlight-main-beam {
+  background: linear-gradient(to right, transparent 0%, rgba(66, 217, 255, 0.15) 15%, rgba(139, 92, 246, 0.35) 32%, rgba(255, 255, 255, 0.45) 50%, rgba(139, 92, 246, 0.35) 68%, rgba(66, 217, 255, 0.15) 85%, transparent 100%) !important;
+}
+
+[data-theme="glassmorphism"] .about-pillar-card {
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="glassmorphism"] .about-pillar-tag {
+  color: #42D9FF !important;
+}
+
+[data-theme="glassmorphism"] .about-pillar-title {
+  color: #F0F9FF !important;
+}
+
+[data-theme="glassmorphism"] .about-pillar-desc {
+  color: #93C5FD !important;
+}
+
+/* Glassmorphism Skills */
 [data-theme="glassmorphism"] .skill-group-card {
   background: linear-gradient(180deg, rgba(12, 22, 54, 0.75) 0%, rgba(6, 12, 32, 0.75) 100%) !important;
   backdrop-filter: blur(24px) saturate(190%) !important;
-  border: 1px solid rgba(56, 189, 248, 0.22) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.4) !important;
   border-radius: 24px !important;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 25px rgba(56, 189, 248, 0.14) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 25px rgba(66, 217, 255, 0.14) !important;
 }
 
 [data-theme="glassmorphism"] .skill-item-card {
   border-radius: 16px !important;
-  border: 1px solid rgba(56, 189, 248, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
   backdrop-filter: blur(16px) !important;
 }
 
 [data-theme="glassmorphism"] .skill-item-card:hover {
-  border-color: #38bdf8 !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.3) !important;
+  border-color: #42D9FF !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(66, 217, 255, 0.3) !important;
 }
 
+[data-theme="glassmorphism"] .skills-tab-btn.active {
+  background: linear-gradient(135deg, #42D9FF, #8B5CF6) !important;
+  color: #080B18 !important;
+  font-weight: 700 !important;
+}
+
+/* Glassmorphism Projects */
 [data-theme="glassmorphism"] .project-stack-card {
-  background: linear-gradient(180deg, rgba(10, 18, 44, 0.95) 0%, rgba(6, 11, 28, 0.95) 100%) !important;
-  border: 1px solid rgba(56, 189, 248, 0.25) !important;
-  border-top: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  background: linear-gradient(180deg, rgba(10, 18, 44, 0.92) 0%, rgba(6, 11, 28, 0.92) 100%) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45) !important;
   border-radius: 28px !important;
-  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.8), 0 24px 50px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 35px rgba(56, 189, 248, 0.16) !important;
+  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.8), 0 24px 50px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 35px rgba(66, 217, 255, 0.16) !important;
 }
 
 [data-theme="glassmorphism"] .card-pill-live {
-  background: rgba(56, 189, 248, 0.12) !important;
-  border: 1px solid rgba(56, 189, 248, 0.45) !important;
-  color: #ffffff !important;
+  background: rgba(66, 217, 255, 0.12) !important;
+  border: 1px solid rgba(66, 217, 255, 0.45) !important;
+  color: #F0F9FF !important;
 }
 
 [data-theme="glassmorphism"] .card-pill-live:hover {
-  background: #38bdf8 !important;
-  color: #040712 !important;
-  box-shadow: 0 0 24px rgba(56, 189, 248, 0.6) !important;
-}
-
-[data-theme="glassmorphism"] .about-expanding-card {
-  background: rgba(6, 12, 32, 0.9) !important;
-  border: 1px solid rgba(56, 189, 248, 0.28) !important;
-  border-top: 2px solid rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 0 50px rgba(56, 189, 248, 0.25) !important;
-  border-radius: 26px !important;
+  background: #42D9FF !important;
+  color: #080B18 !important;
+  box-shadow: 0 0 24px rgba(66, 217, 255, 0.6) !important;
 }

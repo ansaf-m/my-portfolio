@@ -76,7 +76,7 @@ export const Skills = () => {
         {/* Categorized Skills Showcase */}
         <div className="skills-groups-container">
           {displayedGroups.map((group) => (
-            <div key={group.id} className="skill-group-card">
+            <div key={group.id} className={`skill-group-card skill-group-${group.id}`}>
               {/* Group Header */}
               <div className="group-header">
                 <div className="group-header-left">

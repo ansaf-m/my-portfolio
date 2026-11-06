@@ -277,7 +277,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Project 2 */}
-            <div style={{ marginBottom: '14px' }}>
+            <div style={{ marginBottom: '16px' }}>
               <h4 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#0f172a', marginBottom: '2px' }}>
                 Movie Search & Favorites Management System
               </h4>
@@ -289,6 +289,41 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                 <li>Built reusable, modular React components with dynamic search and filtering functionality.</li>
                 <li>Implemented a favorites management feature to allow users to save and access selected movies.</li>
                 <li>Designed a clean, responsive, and user-friendly interface optimized for different screen sizes.</li>
+              </ul>
+            </div>
+
+            {/* Project 3 */}
+            <div style={{ marginBottom: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '2px' }}>
+                <h4 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#0f172a' }}>
+                  SAYF STORE — 3D E-Commerce Platform
+                </h4>
+                <a href="https://sayfstore.in" target="_blank" rel="noreferrer" style={{ fontSize: '0.82rem', color: '#2563eb', fontWeight: 600 }}>sayfstore.in ↗</a>
+              </div>
+              <div style={{ fontSize: '0.84rem', color: '#475569', fontStyle: 'italic', marginBottom: '6px' }}>
+                Tech Stack: React.js, Three.js, JavaScript ES6+, Modern CSS3, Vercel, GoDaddy DNS
+              </div>
+              <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.9rem', color: '#334155' }}>
+                <li>Designed and developed the complete modern e-commerce storefront for SAYF Store beard oil brand.</li>
+                <li>Created an interactive 3D rotating product presentation utilizing Three.js showcasing product benefits and ingredients.</li>
+                <li>Implemented dynamic shopping cart with quantity selection and direct WhatsApp order dispatch to the store owner.</li>
+                <li>Configured custom GoDaddy domain integration and deployed the live website using Vercel.</li>
+              </ul>
+            </div>
+
+            {/* Project 4 */}
+            <div style={{ marginBottom: '14px' }}>
+              <h4 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#0f172a', marginBottom: '2px' }}>
+                Smart Expense Classifier — AI-Powered Expense Tracker
+              </h4>
+              <div style={{ fontSize: '0.84rem', color: '#475569', fontStyle: 'italic', marginBottom: '6px' }}>
+                Tech Stack: React.js, Python, Machine Learning, JavaScript ES6+, Chart.js, REST APIs, CSS3
+              </div>
+              <ul style={{ paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.9rem', color: '#334155' }}>
+                <li>Engineered an intelligent expense management system featuring automated machine learning-based transaction categorization.</li>
+                <li>Implemented monthly budget management with real-time budget utilization progress tracking and spending limits.</li>
+                <li>Built interactive financial analytics dashboard featuring dynamic pie chart visualizations across expense categories.</li>
+                <li>Developed complete expense list management with inline edit, deletion, and date-filtered transaction history.</li>
               </ul>
             </div>
           </div>

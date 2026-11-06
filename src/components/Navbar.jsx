@@ -17,22 +17,22 @@ export const Navbar = ({ currentTheme, onThemeChange, onOpenResume }) => {
       id: 'minimalism',
       name: 'Minimalism',
       tagline: 'The Essential',
-      color: '#ffffff',
-      gradient: 'linear-gradient(135deg, #ffffff, #a1a1aa)'
+      color: '#171717',
+      gradient: 'linear-gradient(135deg, #171717, #777777)'
     },
     {
       id: 'surrealism',
       name: 'Surrealism',
       tagline: 'The Imagination',
-      color: '#e879f9',
-      gradient: 'linear-gradient(135deg, #e879f9, #f43f5e)'
+      color: '#B69AFF',
+      gradient: 'linear-gradient(135deg, #B69AFF, #D4FF5C, #FF6B62)'
     },
     {
       id: 'glassmorphism',
       name: 'Glassmorphism',
       tagline: 'The Future',
-      color: '#38bdf8',
-      gradient: 'linear-gradient(135deg, #38bdf8, #818cf8)'
+      color: '#42D9FF',
+      gradient: 'linear-gradient(135deg, #42D9FF, #8B5CF6)'
     }
   ];
 
@@ -99,44 +99,23 @@ export const Navbar = ({ currentTheme, onThemeChange, onOpenResume }) => {
           <a
             href="#"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
               fontFamily: 'var(--font-heading)',
-              fontSize: '1.25rem',
+              fontSize: '1.28rem',
               fontWeight: 700,
               letterSpacing: '-0.02em',
-              color: '#ffffff',
-              textDecoration: 'none'
+              color: 'var(--text-main)',
+              textDecoration: 'none',
+              transition: 'transform 0.2s ease, opacity 0.2s ease',
+              display: 'inline-flex',
+              alignItems: 'center'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '0.9';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '1';
             }}
           >
-            <div
-              style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, var(--primary-accent), var(--secondary-accent))',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#ffffff',
-                boxShadow: '0 0 15px var(--accent-glow)',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.08)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              {/* Bold Cone / Triangle A Logo Model Icon */}
-              <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
-                <path d="M 50 12 L 88 88 L 65 88 L 58 72 L 42 72 L 35 88 L 12 88 Z" fill="#ffffff" />
-                <polygon points="50 34 38 62 62 62" fill="#09090f" />
-                <line x1="50" y1="12" x2="50" y2="72" stroke="rgba(255,255,255,0.7)" strokeWidth="2.5" />
-              </svg>
-            </div>
             <span>
               Ansaf's<span style={{ color: 'var(--primary-accent)' }}> Space</span>
             </span>
@@ -239,9 +218,9 @@ export const Navbar = ({ currentTheme, onThemeChange, onOpenResume }) => {
                           gap: '12px',
                           padding: '10px 12px',
                           borderRadius: '8px',
-                          background: isSelected ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                          background: isSelected ? 'var(--surface-hover)' : 'transparent',
                           border: isSelected ? '1px solid var(--border-highlight)' : '1px solid transparent',
-                          color: isSelected ? '#ffffff' : 'var(--text-muted)',
+                          color: isSelected ? 'var(--text-main)' : 'var(--text-muted)',
                           fontSize: '0.85rem',
                           cursor: 'pointer',
                           textAlign: 'left',
@@ -260,7 +239,7 @@ export const Navbar = ({ currentTheme, onThemeChange, onOpenResume }) => {
                           }}
                         />
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontWeight: 700, fontSize: '0.86rem', color: isSelected ? '#ffffff' : 'var(--text-main)' }}>
+                          <div style={{ fontWeight: 700, fontSize: '0.86rem', color: isSelected ? 'var(--primary-accent)' : 'var(--text-main)' }}>
                             {t.name}
                           </div>
                           <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '1px' }}>

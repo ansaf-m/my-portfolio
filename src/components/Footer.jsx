@@ -1,19 +1,21 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 
-export const Footer = () => {
+export const Footer = ({ currentTheme }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <footer
+      className="portfolio-footer"
       style={{
         borderTop: '1px solid var(--border-color)',
-        backgroundColor: 'rgba(5, 5, 10, 0.95)',
+        backgroundColor: 'var(--surface-color)',
         padding: '60px 0 36px 0',
         position: 'relative',
-        zIndex: 10
+        zIndex: 10,
+        transition: 'background-color var(--transition-smooth), border-color var(--transition-smooth)'
       }}
     >
       <div className="container">
@@ -31,36 +33,16 @@ export const Footer = () => {
           <div>
             <div
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.4rem',
                 fontWeight: 700,
-                color: '#ffffff',
-                marginBottom: '6px'
+                color: 'var(--text-main)',
+                marginBottom: '6px',
+                letterSpacing: '-0.02em'
               }}
             >
-              <div
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '8px',
-                  background: 'linear-gradient(135deg, var(--primary-accent), var(--secondary-accent))',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  boxShadow: '0 0 12px var(--accent-glow)'
-                }}
-              >
-                {/* Triangular Cone A Emblem */}
-                <svg width="18" height="18" viewBox="0 0 100 100" fill="none">
-                  <path d="M 50 12 L 88 88 L 65 88 L 58 72 L 42 72 L 35 88 L 12 88 Z" fill="#ffffff" />
-                  <polygon points="50 34 38 62 62 62" fill="#09090f" />
-                </svg>
-              </div>
-              <span>Ansaf</span>
+              <span>Ansaf's</span>
+              <span style={{ color: 'var(--primary-accent)' }}> Space</span>
             </div>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', letterSpacing: '0.02em', margin: 0 }}>
               Java · Spring Boot · React · Express ,Databases
@@ -81,7 +63,7 @@ export const Footer = () => {
                 width: '42px',
                 height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.04)',
+                background: 'var(--surface-hover)',
                 border: '1px solid var(--border-color)',
                 color: 'var(--text-main)',
                 display: 'flex',
@@ -97,7 +79,7 @@ export const Footer = () => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                e.currentTarget.style.background = 'var(--surface-hover)';
                 e.currentTarget.style.color = 'var(--text-main)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
@@ -112,7 +94,7 @@ export const Footer = () => {
         {/* Bottom copyright & console log line */}
         <div
           style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            borderTop: '1px solid var(--border-color)',
             paddingTop: '24px',
             display: 'flex',
             alignItems: 'center',
@@ -131,8 +113,8 @@ export const Footer = () => {
             style={{
               fontFamily: 'var(--font-code, monospace)',
               fontSize: '0.82rem',
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: 'var(--surface-hover)',
+              border: '1px solid var(--border-color)',
               padding: '6px 14px',
               borderRadius: 'var(--radius-full)',
               color: 'var(--text-muted)',
@@ -143,11 +125,11 @@ export const Footer = () => {
             }}
           >
             <span style={{ color: 'var(--primary-accent)' }}>console</span>
-            <span style={{ color: '#94a3b8' }}>.</span>
-            <span style={{ color: '#38bdf8' }}>log</span>
-            <span style={{ color: '#94a3b8' }}>(</span>
-            <span style={{ color: '#34d399' }}>"Keep building"</span>
-            <span style={{ color: '#94a3b8' }}>);</span>
+            <span style={{ color: 'var(--text-dim)' }}>.</span>
+            <span style={{ color: 'var(--secondary-accent)' }}>log</span>
+            <span style={{ color: 'var(--text-dim)' }}>(</span>
+            <span style={{ color: '#10b981' }}>"Keep building"</span>
+            <span style={{ color: 'var(--text-dim)' }}>);</span>
           </div>
         </div>
       </div>

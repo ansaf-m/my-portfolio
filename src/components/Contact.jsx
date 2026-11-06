@@ -7,8 +7,9 @@ import {
   Check, 
   MapPin, 
   MessageSquare, 
-  Sparkles,
-  Clock 
+  Clock,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, WhatsAppIcon } from './Icons';
 import confetti from 'canvas-confetti';
@@ -19,7 +20,8 @@ export const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    botcheck: false
   });
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +29,11 @@ export const Contact = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
     if (errorMessage) setErrorMessage('');
   };
 
@@ -37,29 +43,91 @@ export const Contact = () => {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setErrorMessage('Please fill in all required fields.');
+    setErrorMessage('');
+
+    // 1. Validate required fields
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setErrorMessage('Please fill in all required fields (Name, Email, Message).');
+      return;
+    }
+
+    // 2. Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setErrorMessage('Please enter a valid email address (e.g. name@example.com).');
+      return;
+    }
+
+    // 3. Check for Web3Forms access key
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setErrorMessage(
+        'Email service configuration is pending (VITE_WEB3FORMS_ACCESS_KEY is not configured in Vercel Environment Variables). Please add the key in Vercel settings or email me directly at ' + PERSONAL_INFO.email
+      );
+      return;
+    }
+
+    // 4. Honeypot check (prevent bot spam)
+    if (formData.botcheck) {
+      // Silently ignore bot submission
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate reliable dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-
-      // Trigger celebratory confetti
-      confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.6 }
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: trimmedName,
+          email: trimmedEmail,
+          replyto: trimmedEmail,
+          subject: formData.subject.trim() || `Portfolio Inquiry from ${trimmedName}`,
+          message: trimmedMessage,
+          from_name: trimmedName,
+          botcheck: ''
+        })
       });
 
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1200);
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setErrorMessage('');
+
+        // Trigger celebratory confetti
+        confetti({
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+
+        // Reset form ONLY on successful delivery
+        setFormData({ name: '', email: '', subject: '', message: '', botcheck: false });
+      } else {
+        setIsSubmitting(false);
+        setErrorMessage(
+          result.message || 'Transmission failed. Please try again or reach out directly to ' + PERSONAL_INFO.email
+        );
+      }
+    } catch (err) {
+      setIsSubmitting(false);
+      setErrorMessage(
+        'A network error occurred while transmitting your message. Please check your connection or email me directly at ' + PERSONAL_INFO.email
+      );
+    }
   };
 
   return (
@@ -248,7 +316,7 @@ export const Contact = () => {
             {submitted ? (
               <div 
                 style={{
-                  padding: '32px',
+                  padding: '36px 32px',
                   borderRadius: '16px',
                   background: 'rgba(16, 185, 129, 0.1)',
                   border: '1px solid rgba(16, 185, 129, 0.3)',
@@ -257,8 +325,8 @@ export const Contact = () => {
               >
                 <div 
                   style={{
-                    width: '52px',
-                    height: '52px',
+                    width: '56px',
+                    height: '56px',
                     borderRadius: '50%',
                     background: 'rgba(16, 185, 129, 0.2)',
                     display: 'flex',
@@ -270,11 +338,11 @@ export const Contact = () => {
                 >
                   <Check size={28} />
                 </div>
-                <h4 style={{ fontSize: '1.25rem', color: 'var(--text-main)', marginBottom: '8px' }}>
-                  Message Dispatched Successfully!
+                <h4 style={{ fontSize: '1.28rem', color: 'var(--text-main)', marginBottom: '8px', fontWeight: 700 }}>
+                  Message Transmitted Successfully!
                 </h4>
-                <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
-                  Thank you for reaching out! I've received your inquiry and will respond shortly.
+                <p style={{ fontSize: '0.94rem', color: 'var(--text-muted)', marginBottom: '22px', lineHeight: '1.6' }}>
+                  Message transmitted successfully! I'll get back to you soon.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -284,10 +352,37 @@ export const Contact = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }} noValidate>
+                {/* Honeypot Spam Protection Field - Hidden from humans */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  checked={formData.botcheck}
+                  onChange={handleChange}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 {errorMessage && (
-                  <div style={{ color: '#ef4444', fontSize: '0.85rem', background: 'rgba(239, 68, 68, 0.1)', padding: '10px 14px', borderRadius: '8px' }}>
-                    {errorMessage}
+                  <div 
+                    role="alert"
+                    style={{ 
+                      color: '#ef4444', 
+                      fontSize: '0.86rem', 
+                      background: 'rgba(239, 68, 68, 0.1)', 
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      padding: '12px 16px', 
+                      borderRadius: '10px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '10px',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    <AlertCircle size={18} style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <span>{errorMessage}</span>
                   </div>
                 )}
 
@@ -302,6 +397,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="e.g. Sarah Connor"
                     required
+                    disabled={isSubmitting}
                     className="form-input"
                   />
                 </div>
@@ -317,6 +413,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="e.g. sarah@enterprise.com"
                     required
+                    disabled={isSubmitting}
                     className="form-input"
                   />
                 </div>
@@ -331,6 +428,7 @@ export const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="e.g. Software Engineer Role / Project Consultation"
+                    disabled={isSubmitting}
                     className="form-input"
                   />
                 </div>
@@ -346,6 +444,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     placeholder="Tell me about your team, tech stack, or the challenges you are solving..."
                     required
+                    disabled={isSubmitting}
                     className="form-input"
                     style={{ resize: 'vertical' }}
                   />
@@ -355,10 +454,19 @@ export const Contact = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="btn btn-primary"
-                  style={{ width: '100%', marginTop: '6px' }}
+                  style={{ 
+                    width: '100%', 
+                    marginTop: '6px',
+                    opacity: isSubmitting ? 0.8 : 1,
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                  }}
+                  aria-busy={isSubmitting}
                 >
                   {isSubmitting ? (
-                    <span>Dispatching message...</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                      <Loader2 size={16} className="contact-btn-spinner" />
+                      <span>Transmitting Message...</span>
+                    </span>
                   ) : (
                     <>
                       <span>Transmit Message</span>
@@ -373,17 +481,31 @@ export const Contact = () => {
       </div>
 
       <style>{`
+        @keyframes contactSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .contact-btn-spinner {
+          animation: contactSpin 0.9s linear infinite;
+        }
+
         .form-input {
           width: 100%;
           padding: 12px 16px;
           border-radius: 10px;
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--surface-hover);
           border: 1px solid var(--border-color);
-          color: #ffffff;
+          color: var(--text-main);
           font-family: var(--font-body);
           font-size: 0.92rem;
           outline: none;
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-input:disabled {
+          opacity: 0.65;
+          cursor: not-allowed;
         }
 
         .form-input:focus {
@@ -399,7 +521,7 @@ export const Contact = () => {
           gap: 8px;
           padding: 12px;
           border-radius: 10px;
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--surface-hover);
           border: 1px solid var(--border-color);
           color: var(--text-main);
           font-size: 0.88rem;
@@ -409,9 +531,9 @@ export const Contact = () => {
         }
 
         .social-channel-btn:hover {
-          background: rgba(var(--primary-rgb), 0.15);
+          background: var(--accent-glow-subtle);
           border-color: var(--primary-accent);
-          color: #ffffff;
+          color: var(--primary-accent);
           transform: translateY(-2px);
         }
 

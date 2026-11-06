@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   X, 
-  ExternalLink, 
   CheckCircle2, 
   Activity, 
   Layers, 
   Database, 
   Zap, 
-  ShieldCheck 
+  ShieldCheck,
+  ZoomIn,
+  ExternalLink
 } from 'lucide-react';
-import { GithubIcon } from './Icons';
 
-export const ProjectModal = ({ project, onClose }) => {
+export const ProjectModal = ({ project, onClose, onOpenImageViewer }) => {
+  const images = project?.images && project.images.length > 0 
+    ? project.images 
+    : [{ url: project.image, title: project.title, label: 'Overview' }];
+  
+  const [activeImgIdx, setActiveImgIdx] = useState(0);
+  const currentImg = images[activeImgIdx] || images[0];
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -89,17 +96,95 @@ export const ProjectModal = ({ project, onClose }) => {
           <X size={20} />
         </button>
 
-        {/* Modal Banner Image */}
-        <div style={{ position: 'relative', height: '280px', overflow: 'hidden' }}>
+        {/* Modal Banner Image / Multi-Image Showcase */}
+        <div 
+          style={{ 
+            position: 'relative', 
+            height: '280px', 
+            overflow: 'hidden',
+            cursor: onOpenImageViewer ? 'pointer' : 'default',
+            backgroundColor: '#0a0d18'
+          }}
+          onClick={() => onOpenImageViewer && onOpenImageViewer(activeImgIdx)}
+          title="Click to view full image in high resolution"
+        >
+          {/* Multi-Screenshot Tabs */}
+          {images.length > 1 && (
+            <div
+              style={{
+                position: 'absolute',
+                top: '18px',
+                left: '18px',
+                display: 'flex',
+                gap: '8px',
+                zIndex: 20
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {images.map((img, idx) => {
+                const isActive = idx === activeImgIdx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImgIdx(idx)}
+                    style={{
+                      padding: '5px 14px',
+                      borderRadius: '9999px',
+                      background: isActive ? 'var(--primary-accent)' : 'rgba(10, 12, 22, 0.75)',
+                      color: isActive ? '#000000' : '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.25)',
+                      fontSize: '0.78rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      backdropFilter: 'blur(10px)',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {img.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           <img
-            src={project.image}
-            alt={project.title}
+            src={currentImg.url}
+            alt={currentImg.title || project.title}
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              objectPosition: 'top center',
+              transition: 'opacity 0.2s ease'
             }}
           />
+
+          {/* Click to expand pill bottom-right */}
+          {onOpenImageViewer && (
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '18px',
+                right: '18px',
+                zIndex: 20,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 14px',
+                borderRadius: '9999px',
+                background: 'rgba(10, 12, 22, 0.85)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <ZoomIn size={14} style={{ color: 'var(--primary-accent)' }} />
+              <span>View Full Image</span>
+            </div>
+          )}
+
           <div
             style={{
               position: 'absolute',
@@ -107,7 +192,8 @@ export const ProjectModal = ({ project, onClose }) => {
               left: 0,
               right: 0,
               height: '100px',
-              background: 'linear-gradient(to top, var(--surface-color), transparent)'
+              background: 'linear-gradient(to top, var(--surface-color), transparent)',
+              pointerEvents: 'none'
             }}
           />
         </div>
@@ -116,49 +202,47 @@ export const ProjectModal = ({ project, onClose }) => {
         <div style={{ padding: '32px' }}>
           {/* Badge & Title */}
           <div style={{ marginBottom: '16px' }}>
-            <span
-              style={{
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                color: 'var(--primary-accent)',
-                background: 'var(--accent-glow-subtle)',
-                padding: '4px 12px',
-                borderRadius: 'var(--radius-full)',
-                border: '1px solid var(--border-highlight)',
-                display: 'inline-block',
-                marginBottom: '10px'
-              }}
-            >
-              {project.badge}
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
+              <span
+                style={{
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  color: 'var(--primary-accent)',
+                  background: 'var(--accent-glow-subtle)',
+                  padding: '4px 12px',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid var(--border-highlight)',
+                  display: 'inline-block'
+                }}
+              >
+                {project.badge}
+              </span>
+              {project.liveUrl && !project.liveUrl.includes('demo.ansafdev.com') && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    color: 'var(--primary-accent)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    textDecoration: 'none'
+                  }}
+                >
+                  <span>Visit {project.liveUrl.replace('https://', '')}</span>
+                  <ExternalLink size={14} />
+                </a>
+              )}
+            </div>
             <h2 style={{ fontSize: '1.85rem', color: '#ffffff', marginBottom: '6px' }}>
               {project.title}
             </h2>
             <p style={{ fontSize: '1rem', color: 'var(--text-muted)' }}>
               {project.subtitle}
             </p>
-          </div>
-
-          {/* Action Links */}
-          <div style={{ display: 'flex', gap: '14px', marginBottom: '28px', flexWrap: 'wrap' }}>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-primary btn-sm"
-            >
-              <ExternalLink size={16} />
-              <span>Live Demonstration</span>
-            </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-outline btn-sm"
-            >
-              <GithubIcon size={16} />
-              <span>Source Repository</span>
-            </a>
           </div>
 
           {/* Metrics Spotlight */}
