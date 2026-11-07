@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { AboutParticleGlobe } from "./AboutParticleGlobe";
 
@@ -26,40 +26,36 @@ export function About({ currentTheme }) {
 
   const isMobile = viewportSize.width < 768;
 
-  // Track raw scroll progress within the 220vh About section
+  // Track raw scroll progress within the kinetic About section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  // ── Ultra-Smooth Responsive Scroll Physics ──
-  // Tuned spring eliminates wheel stair-stepping on laptop and lag/rubber-banding on mobile touch
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 110,
-    damping: 24,
-    mass: 0.14,
-    restDelta: 0.001,
-  });
+  // ── Ultra-Smooth 1:1 Kinetic Scroll Transition ──
+  // Direct scroll mapping eliminates spring lag, harmonic settling, and direction-reversal resistance.
+  // Wheel and touch gestures respond instantaneously with zero latency and zero stuck points.
+  const smoothProgress = scrollYProgress;
 
   // ── Kinetic Exit of Heading Words ──
-  // "ABOUT" (above) moves to the LEFT side simultaneously, exiting the screen
+  // "ABOUT" (above) moves to the LEFT side smoothly, exiting the screen
   const aboutX = useTransform(
     smoothProgress,
-    [0, 0.55],
+    [0, 0.65],
     ["0vw", isMobile ? "-75vw" : "-82vw"]
   );
 
-  // "ME" (below) moves to the RIGHT side simultaneously, exiting the screen
+  // "ME" (below) moves to the RIGHT side smoothly, exiting the screen
   const meX = useTransform(
     smoothProgress,
-    [0, 0.55],
+    [0, 0.65],
     ["0vw", isMobile ? "75vw" : "82vw"]
   );
 
-  // Words fade out completely as they approach the screen edges
+  // Words fade out smoothly as they glide towards screen edges
   const titleOpacity = useTransform(
     smoothProgress,
-    [0, 0.32, 0.5],
+    [0, 0.35, 0.58],
     [1, 1, 0]
   );
 
@@ -79,13 +75,13 @@ export function About({ currentTheme }) {
 
   const cardWidth = useTransform(
     smoothProgress,
-    [0, 0.58],
+    [0, 0.82],
     [initialWidth, targetWidth]
   );
 
   const cardHeight = useTransform(
     smoothProgress,
-    [0, 0.58],
+    [0, 0.82],
     [initialHeight, targetHeight]
   );
 
@@ -97,17 +93,17 @@ export function About({ currentTheme }) {
   const spotlightDeltaX = spotlightDeltaY * Math.tan((spotlightAngle * Math.PI) / 180);
   const spotlightOriginX = Math.round(targetWidth / 2 + spotlightDeltaX);
 
-  // Card Content revealed as card opens
+  // Card Content revealed seamlessly as card opens
   const contentOpacity = useTransform(
     smoothProgress,
-    [0.32, 0.6],
+    [0.35, 0.78],
     [0, 1]
   );
 
   const contentY = useTransform(
     smoothProgress,
-    [0.32, 0.6],
-    [32, 0]
+    [0.35, 0.78],
+    [14, 0]
   );
 
   // Scroll indicator cue fades out
@@ -284,7 +280,7 @@ export function About({ currentTheme }) {
       <style>{`
         .about-kinetic-section {
           position: relative;
-          height: 220vh;
+          height: 175vh;
           background: var(--bg-color);
           padding: 0 !important;
           margin: 0 !important;
@@ -389,15 +385,14 @@ export function About({ currentTheme }) {
           border: 1px solid rgba(255, 255, 255, 0.16);
           border-top: 1.5px solid rgba(255, 255, 255, 0.45);
           border-right: 1.5px solid rgba(255, 255, 255, 0.38);
-          background: rgba(8, 8, 14, 0.92);
-          backdrop-filter: blur(28px) saturate(160%);
-          -webkit-backdrop-filter: blur(28px) saturate(160%);
+          background: rgba(8, 8, 14, 0.94);
+          backdrop-filter: blur(10px) saturate(140%);
+          -webkit-backdrop-filter: blur(10px) saturate(140%);
           box-shadow: 
-            0 30px 80px rgba(0, 0, 0, 0.9), 
-            0 0 50px rgba(var(--primary-rgb), 0.2),
-            inset 0 1px 1px rgba(255, 255, 255, 0.3),
-            inset 2px -2px 20px rgba(var(--primary-rgb), 0.2);
-          overflow: hidden; /* Clips the refracted light system to card boundary */
+            0 24px 70px rgba(0, 0, 0, 0.85), 
+            0 0 35px rgba(var(--primary-rgb), 0.16),
+            inset 0 1px 1px rgba(255, 255, 255, 0.25);
+          overflow: hidden; /* Clips the inner content and spotlight to card boundary */
           pointer-events: auto;
           box-sizing: border-box;
           flex-shrink: 0;
@@ -406,7 +401,8 @@ export function About({ currentTheme }) {
           -webkit-transform: translate3d(0, 0, 0);
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
-          transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+          contain: layout paint;
+          touch-action: pan-y;
         }
 
         /* ── Stationary Cinematic Spotlight World ── */
@@ -419,7 +415,6 @@ export function About({ currentTheme }) {
           overflow: hidden;
           border-radius: inherit;
           z-index: 2;
-          transition: opacity 0.4s ease;
         }
 
         /* Upper-Right Spotlight Aperture / Lamp Source */
@@ -433,27 +428,14 @@ export function About({ currentTheme }) {
           border-radius: 50%;
           background: radial-gradient(
             ellipse at 50% 60%,
-            rgba(255, 255, 255, 0.82) 0%,
-            rgba(var(--primary-rgb), 0.85) 35%,
-            rgba(var(--secondary-accent), 0.4) 65%,
-            transparent 100%
+            rgba(255, 255, 255, 0.75) 0%,
+            rgba(var(--primary-rgb), 0.6) 30%,
+            rgba(var(--secondary-accent), 0.25) 55%,
+            transparent 80%
           );
-          filter: blur(12px);
           mix-blend-mode: screen;
           pointer-events: none;
           z-index: 2;
-          animation: upperAperturePulse 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes upperAperturePulse {
-          0% {
-            opacity: 0.82;
-            transform: translate(-50%, -20%) scale(0.96);
-          }
-          100% {
-            opacity: 0.95;
-            transform: translate(-50%, -20%) scale(1.04);
-          }
         }
 
         /* Stationary Volumetric Diagonal Light Cone */
@@ -471,7 +453,6 @@ export function About({ currentTheme }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          will-change: transform;
 
           /* Natural expanding spotlight cone frustum */
           clip-path: polygon(38% 0%, 62% 0%, 100% 100%, 0% 100%);
@@ -508,25 +489,12 @@ export function About({ currentTheme }) {
           height: 100%;
           background: radial-gradient(
             ellipse at 50% 28%,
-            rgba(var(--primary-rgb), 0.32) 0%,
-            rgba(var(--secondary-accent), 0.18) 42%,
-            transparent 76%
+            rgba(var(--primary-rgb), 0.22) 0%,
+            rgba(var(--secondary-accent), 0.12) 40%,
+            transparent 72%
           );
-          filter: blur(48px);
           mix-blend-mode: screen;
           pointer-events: none;
-          animation: mistBreathe 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes mistBreathe {
-          0% {
-            opacity: 0.8;
-            filter: blur(44px);
-          }
-          100% {
-            opacity: 0.95;
-            filter: blur(52px);
-          }
         }
 
         /* 2. Main Beam: Translucent theme-refracted volumetric cone */
@@ -538,14 +506,13 @@ export function About({ currentTheme }) {
           background: linear-gradient(
             to right,
             transparent 0%,
-            rgba(var(--primary-rgb), 0.12) 15%,
-            rgba(var(--secondary-accent), 0.35) 32%,
-            rgba(255, 255, 255, 0.42) 50%,
-            rgba(var(--secondary-accent), 0.35) 68%,
-            rgba(var(--primary-rgb), 0.12) 85%,
+            rgba(var(--primary-rgb), 0.08) 18%,
+            rgba(var(--secondary-accent), 0.25) 34%,
+            rgba(255, 255, 255, 0.35) 50%,
+            rgba(var(--secondary-accent), 0.25) 66%,
+            rgba(var(--primary-rgb), 0.08) 82%,
             transparent 100%
           );
-          filter: blur(16px);
           mix-blend-mode: screen;
           pointer-events: none;
           opacity: 0.86;
@@ -560,34 +527,17 @@ export function About({ currentTheme }) {
           background: repeating-linear-gradient(
             to right,
             transparent 0px,
-            rgba(var(--primary-rgb), 0.08) 12px,
-            rgba(255, 255, 255, 0.22) 24px,
-            rgba(var(--primary-rgb), 0.42) 38px,
-            rgba(255, 255, 255, 0.1) 50px,
-            transparent 66px,
-            rgba(var(--secondary-accent), 0.38) 82px,
-            rgba(255, 255, 255, 0.26) 98px,
-            rgba(var(--primary-rgb), 0.36) 114px,
-            transparent 132px,
-            rgba(255, 255, 255, 0.2) 150px,
-            transparent 170px
+            rgba(var(--primary-rgb), 0.06) 12px,
+            rgba(255, 255, 255, 0.16) 24px,
+            rgba(var(--primary-rgb), 0.28) 38px,
+            transparent 54px,
+            rgba(var(--secondary-accent), 0.24) 74px,
+            rgba(255, 255, 255, 0.18) 90px,
+            transparent 110px
           );
-          filter: blur(8px);
           mix-blend-mode: screen;
           pointer-events: none;
-          animation: godrayMistDrift 14s ease-in-out infinite alternate;
           opacity: 0.82;
-        }
-
-        @keyframes godrayMistDrift {
-          0% {
-            transform: translateX(-14px) scaleX(0.97);
-            opacity: 0.78;
-          }
-          100% {
-            transform: translateX(14px) scaleX(1.03);
-            opacity: 0.9;
-          }
         }
 
         /* 4. Brightest Region: Soft translucent specular spine */
@@ -600,9 +550,9 @@ export function About({ currentTheme }) {
           height: 100%;
           background: linear-gradient(
             to bottom,
-            rgba(255, 255, 255, 0.6) 0%,
-            rgba(var(--primary-rgb), 0.48) 28%,
-            rgba(var(--secondary-accent), 0.22) 58%,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(var(--primary-rgb), 0.35) 28%,
+            rgba(var(--secondary-accent), 0.16) 58%,
             transparent 82%
           );
           mask-image: linear-gradient(
@@ -619,22 +569,25 @@ export function About({ currentTheme }) {
             #000000 65%,
             transparent 100%
           );
-          filter: blur(8px);
           mix-blend-mode: screen;
           pointer-events: none;
           opacity: 0.72;
         }
 
+        /* Inner Content fills the card with centered alignment */
         .about-card-inner {
           position: absolute;
           inset: 0;
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-items: center;
           padding: clamp(24px, 4vw, 56px);
           box-sizing: border-box;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
+          overflow: hidden;
+          touch-action: pan-y;
           z-index: 10;
         }
 
@@ -765,7 +718,7 @@ export function About({ currentTheme }) {
         /* ── Responsive adjustments for mobile ── */
         @media (max-width: 768px) {
           .about-kinetic-section {
-            height: 200vh;
+            height: 165vh;
           }
           .about-vertical-heading-stage {
             gap: 6px;
@@ -777,63 +730,57 @@ export function About({ currentTheme }) {
           }
           .about-expanding-card {
             border-radius: 18px;
-            backdrop-filter: blur(16px) saturate(140%);
-            -webkit-backdrop-filter: blur(16px) saturate(140%);
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(8, 8, 14, 0.96) !important;
           }
           .spotlight-upper-aperture {
             width: 150px;
             height: 42px;
-            filter: blur(10px);
           }
           .spotlight-cone-pivot {
             --pivot-w: 440px;
             clip-path: polygon(34% 0%, 66% 0%, 100% 100%, 0% 100%);
             -webkit-clip-path: polygon(34% 0%, 66% 0%, 100% 100%, 0% 100%);
           }
-          .spotlight-ambient-mist {
-            filter: blur(32px);
-          }
-          .spotlight-main-beam {
-            filter: blur(12px);
-            opacity: 0.82;
-          }
-          .spotlight-godray-rays {
-            filter: blur(6px);
-            opacity: 0.78;
-          }
-          .spotlight-specular-spine {
-            width: 32px;
-            filter: blur(6px);
-            opacity: 0.65;
-          }
           .about-card-inner {
-            padding: 24px 16px 36px 16px;
-            justify-content: flex-start;
+            padding: 16px 14px 20px 14px;
+            justify-content: center;
           }
           .about-pillars-grid {
             grid-template-columns: 1fr;
-            gap: 14px;
+            gap: 10px;
+            width: 100%;
           }
           .about-pillar-card {
-            padding: 18px 16px;
-            border-radius: 16px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(16, 16, 26, 0.94) !important;
+          }
+          .about-pillar-tag {
+            font-size: 0.7rem;
+            margin-bottom: 4px;
           }
           .about-pillar-title {
-            font-size: 1.18rem;
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
           }
           .about-pillar-desc {
-            font-size: 0.86rem;
-            line-height: 1.6;
+            font-size: 0.8rem;
+            line-height: 1.45;
           }
           .about-actions-row {
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 18px;
+            flex-direction: row;
+            gap: 8px;
+            margin-top: 12px;
             width: 100%;
           }
           .about-action-btn {
-            width: 100%;
+            flex: 1;
+            padding: 9px 12px;
+            font-size: 0.82rem;
             justify-content: center;
           }
         }

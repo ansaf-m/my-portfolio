@@ -214,7 +214,7 @@ const ParticlePoints = ({ scrollProgress, isMobile, currentTheme }) => {
     }
 
     const rawProgress = scrollProgress?.get ? scrollProgress.get() : 0;
-    const normalizedProgress = Math.min(1.0, Math.max(0.0, rawProgress / 0.58));
+    const normalizedProgress = Math.min(1.0, Math.max(0.0, rawProgress / 0.82));
     materialRef.current.uniforms.uProgress.value = normalizedProgress;
 
     // Smoothly interpolate dot color on theme change
@@ -259,12 +259,12 @@ export const AboutParticleGlobe = ({ scrollProgress, isMobile, currentTheme }) =
       <Canvas
         camera={{ position: [0, 0, 7], fov: 50 }}
         gl={{
-          antialias: true,
+          antialias: !isMobile,
           alpha: true,
           powerPreference: 'high-performance',
           preserveDrawingBuffer: false,
         }}
-        dpr={[1, 2]}
+        dpr={isMobile ? 1 : [1, 1.5]}
         style={{
           width: '100%',
           height: '100%',
